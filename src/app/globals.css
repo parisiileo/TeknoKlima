@@ -223,7 +223,14 @@ html.js [data-reveal-line] > * {
 .hero-wake::after {
   content: "";
   position: absolute;
-  inset: -20% -50%;
+  /*
+   * L'overhang orizzontale deve superare la traslazione massima del ciclo
+   * (wake-flow-a arriva a -1924px), altrimenti verso fine animazione il bordo
+   * destro del box scorre oltre lo schermo e le striature "si ritirano" dal
+   * viewport prima dello snap di riavvio. Valore fisso in px (non %) perché la
+   * traslazione è in px e una % non basterebbe sui monitor larghi.
+   */
+  inset: -20% -2200px;
   will-change: transform;
 }
 /*
