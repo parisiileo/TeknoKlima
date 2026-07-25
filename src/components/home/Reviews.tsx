@@ -56,12 +56,18 @@ export function Reviews({ t }: { t: Content }) {
         role="group"
         aria-label={t.reviews.label}
       >
-        {/* Nessun reveal a cascata: le card sono lì da subito, ferme. */}
-        <ul className="flex w-max items-stretch gap-4">
+        {/*
+         * Nessun reveal a cascata: le card sono lì da subito, ferme.
+         * `min-w-full` + card che crescono: dove c'è spazio (schermi larghi) le
+         * cinque card si allargano fino a riempire la riga da bordo a bordo,
+         * dove non ce n'è restano alla loro larghezza minima e la riga scorre.
+         * Senza questo, oltre i ~1700px la riga finiva prima del bordo destro.
+         */}
+        <ul className="flex min-w-full items-stretch gap-4">
           {t.reviews.items.map((r) => (
             <li
               key={r.name}
-              className="flex w-[min(80vw,20rem)] flex-none flex-col rounded-[var(--radius-card)] border border-frost-deep/60 bg-white p-6 transition-colors duration-300 hover:border-cyan/50"
+              className="flex min-w-[min(80vw,20rem)] flex-1 flex-col rounded-[var(--radius-card)] border border-frost-deep/60 bg-white p-6 transition-colors duration-300 hover:border-cyan/50"
             >
               <div className="flex items-center gap-3">
                 <Avatar name={r.name} />

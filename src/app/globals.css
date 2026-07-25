@@ -244,28 +244,26 @@ html.js .hero-title-brand {
 }
 
 /* ============================================
-   Recensioni — riga unica a tutta larghezza
-   Le card escono dal container e proseguono fin oltre i bordi dello
-   schermo: i due lati sono sfumati, così si legge che la riga continua.
+   Recensioni — riga unica da bordo a bordo
+   La riga NON è allineata al container: attacca a filo pagina a sinistra e
+   prosegue oltre il bordo destro, così i due lati sono identici. Entrambi
+   sfumano sulla card, mai su un margine vuoto.
    Statica: si scorre solo a mano, nessuna animazione di movimento.
    ============================================ */
 .reviews-row {
   /*
-   * Allinea la prima card al contenuto del container-tk (stessa max-width e
-   * stesso gutter), ma lascia che la riga sconfini nei margini. Il padding a
-   * destra tiene l'ultima card staccata dal bordo a fine corsa: perché lo
-   * rispetti anche il contenuto in overflow, la <ul> dentro è `w-max`.
+   * Nessun padding laterale: qualunque margine renderebbe i due bordi
+   * diversi fra loro (a sinistra spazio vuoto, a destra la card tagliata).
+   * A filo pagina la prima e l'ultima card si comportano allo stesso modo,
+   * sia a riposo sia a fine corsa.
    */
-  --reviews-pad: max(var(--gutter), calc((100% - 90rem) / 2 + var(--gutter)));
   /*
-   * Sfumatura uguale sui due lati e più larga del margine, così morde anche
-   * la prima card e non solo l'ultima: a riposo i due bordi si leggono allo
-   * stesso modo. I 4rem oltre il margine sono la porzione di card sfumata,
-   * costante a ogni breakpoint (il margine cambia, la morsicatura no).
+   * Sfumatura contenuta: sugli schermi larghi le cinque card ci stanno tutte
+   * e non c'è nulla di tagliato da suggerire, quindi non deve arrivare a
+   * mangiare il contenuto (il padding della card è 1.5rem).
    */
-  --reviews-fade: calc(var(--reviews-pad) + 4rem);
+  --reviews-fade: clamp(2rem, 4vw, 3rem);
   overflow-x: auto;
-  padding-inline: var(--reviews-pad);
   /* Le card hanno bordo e ombra: senza respiro verticale il mask le taglia. */
   padding-block: 0.25rem;
   scrollbar-width: none;
