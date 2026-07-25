@@ -39,6 +39,8 @@ export type PageMeta = { title: string; description: string };
 export type Content = {
   site: {
     name: string;
+    /** Ragione sociale completa (dati camerali) */
+    legalName: string;
     payoffPrimary: string;
     payoffSecondary: string;
     phone: string;
@@ -48,7 +50,10 @@ export type Content = {
     address: string;
     instagram: string;
     instagramHref: string;
+    /** Etichetta P.IVA localizzata (es. "P.IVA 03281740211") */
     vat: string;
+    /** Solo il numero di partita IVA, senza etichetta */
+    vatNumber: string;
     city: string;
     region: string;
   };
@@ -95,6 +100,17 @@ export type Content = {
 
   /** [DA CONFERMARE] — numeri placeholder da validare col cliente */
   stats: { value: number; suffix: string; label: string }[];
+
+  /** Recensioni reali Google — 5 stelle. */
+  reviews: {
+    label: string;
+    title: Highlight;
+    /** Etichetta fonte, es. "Recensione su Google" */
+    source: string;
+    /** aria-label del rating, es. "5 stelle su 5" */
+    ratingAria: string;
+    items: { name: string; date: string; text: string }[];
+  };
 
   contactStrip: {
     label: string;
@@ -161,8 +177,6 @@ export type Content = {
   meta: {
     home: PageMeta;
     climatizzazione: PageMeta;
-    impiantiElettrici: PageMeta;
-    illuminazione: PageMeta;
     galleria: PageMeta;
     chiSiamo: PageMeta;
     contatti: PageMeta;

@@ -5,28 +5,27 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatedLink } from "@/components/ui/AnimatedLink";
 import { LangSwitcher } from "./LangSwitcher";
+import { TkLockup } from "@/components/ui/TkLogo";
 import { gsap, prefersReducedMotion } from "@/lib/animations/gsap-config";
 import { localeHref, type Content, type Locale } from "@/content";
 
 type Props = { locale: Locale; t: Content };
 
-/** Wordmark tipografico (in attesa del logo ufficiale). */
+/** Marchio ufficiale; su hero scura o menu aperto passa alla variante chiara. */
 function Logo({ locale, light = false }: { locale: Locale; light?: boolean }) {
   return (
-    <Link
-      href={`/${locale}`}
-      aria-label="Tekno Klima — Home"
-      className={`font-display text-xl font-semibold tracking-tight ${
-        light ? "text-white" : "text-deep"
-      }`}
-    >
-      TEKNO<span className="text-cyan"> KLIMA</span>
+    <Link href={`/${locale}`} aria-label="Tekno Klima — Home" className="block">
+      <TkLockup
+        variant={light ? "light" : "brand"}
+        title="Tekno Klima"
+        className="h-7 w-auto md:h-8"
+      />
     </Link>
   );
 }
 
 /** Route con hero su fondo deep: l'header deve passare a testo chiaro. */
-const DARK_HERO_ROUTES = /\/(climatizzazione|impianti-elettrici|illuminazione)\/?$/;
+const DARK_HERO_ROUTES = /\/climatizzazione\/?$/;
 
 export function Header({ locale, t }: Props) {
   const [scrolled, setScrolled] = useState(false);

@@ -2,59 +2,83 @@
 
 import { useEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/animations/gsap-config";
-
-const SEEN_KEY = "tk-intro-seen";
+import { TkMark } from "@/components/ui/TkLogo";
 
 /**
- * Intro animata: wordmark che si compone + linea di progresso, poi wipe.
- * - max ~1.8s, skippabile con click/tasto
- * - solo alla prima visita della sessione
- * - saltata del tutto con prefers-reduced-motion
+ * Intro rapida (~1.2s): il simbolo "TK" si compone — l'asta antracite entra da
+ * sinistra, il chevron blu da destra — poi il pannello sale scoprendo la hero,
+ * che riprende il discorso mostrando la dicitura "TEKNO KLIMA" per intero.
+ *
+ * - parte a OGNI caricamento della pagina (nessun gate di sessione)
+ * - renderizzata anche lato server: niente lampo di contenuto prima dell'intro
+ * - skippabile con click o tasto; saltata con prefers-reduced-motion
+ * - senza JS il pannello è nascosto dal <noscript> in fondo al file
  */
 export function Preloader({ tagline }: { tagline: string }) {
-  const [show, setShow] = useState(false);
+  // Visibile già al primo paint (anche in SSR): l'unico modo per non far
+  // vedere la pagina prima dell'intro.
+  const [show, setShow] = useState(true);
   const rootRef = useRef<HTMLDivElement>(null);
-  const tlRef = useRef<gsap.core.Timeline | null>(null);
+  /**
+   * Solo la home ha la hero in due tempi con cui l'intro si raccorda. Letto
+   * dalla location (non da usePathname) perché conta la pagina di atterraggio
+   * e il valore deve restare fisso per tutta la vita del componente.
+   */
+  const [isHome] = useState(
+    () => typeof window !== "undefined" && /^\/[a-z]{2}\/?$/.test(window.location.pathname)
+  );
 
   useEffect(() => {
-    // hero-go: dà il via all'entrata (in pausa in CSS) della home hero.
-    // Senza preloader (o reduced-motion) parte subito; col preloader parte
-    // alla fine del wipe (onComplete più sotto).
-    if (prefersReducedMotion() || sessionStorage.getItem(SEEN_KEY)) {
+    const done = () => {
+      setShow(false);
+      // Via libera all'entrata della hero (in pausa in CSS, vedi globals.css)...
       document.documentElement.classList.add("hero-go");
+      // ...e ricalcolo delle soglie dei ScrollTrigger creati sotto il pannello.
+      window.dispatchEvent(new Event("tk:preloader-done"));
+    };
+
+    if (prefersReducedMotion()) {
+      done();
       return;
     }
-    sessionStorage.setItem(SEEN_KEY, "1");
-    setShow(true);
-  }, []);
 
-  useEffect(() => {
-    if (!show) return;
+    // In home l'intro consegna il testimone allo stage 1 della hero: se il
+    // browser rimettesse lo scroll dov'era, il wipe scoprirebbe la pagina già
+    // a metà conversione. Sulle altre pagine la posizione va invece rispettata.
+    if (isHome) {
+      if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      window.scrollTo(0, 0);
+    }
+
     const root = rootRef.current;
     if (!root) return;
 
-    const letters = root.querySelectorAll("[data-letter]");
-    const line = root.querySelector("[data-line]");
-
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setShow(false);
-        // Ora il wipe è finito: via all'entrata della home hero...
-        document.documentElement.classList.add("hero-go");
-        // ...e ricalcola le soglie dei ScrollTrigger creati sotto il
-        // preloader (vedi LenisProvider).
-        window.dispatchEvent(new Event("tk:preloader-done"));
-      },
-    });
+    const tl = gsap.timeline({ onComplete: done });
     tl.fromTo(
-      letters,
-      { yPercent: 120 },
-      { yPercent: 0, duration: 0.7, stagger: 0.035, ease: "power4.out" }
+      root.querySelector("[data-mark]"),
+      { scale: 0.88, opacity: 0 },
+      { scale: 1, opacity: 1, duration: 0.5, ease: "power3.out" },
+      0
     )
-      .fromTo(line, { scaleX: 0 }, { scaleX: 1, duration: 0.8, ease: "power2.inOut" }, "<0.15")
-      .to(root, { yPercent: -100, duration: 0.7, ease: "power4.inOut" }, "+=0.15");
-
-    tlRef.current = tl;
+      .fromTo(
+        root.querySelector("[data-tk-t]"),
+        { xPercent: -26, yPercent: 8, opacity: 0 },
+        { xPercent: 0, yPercent: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
+        0
+      )
+      .fromTo(
+        root.querySelector("[data-tk-k]"),
+        { xPercent: 26, yPercent: -8, opacity: 0 },
+        { xPercent: 0, yPercent: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
+        0.07
+      )
+      .fromTo(
+        root.querySelector("[data-tagline]"),
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" },
+        0.32
+      )
+      .to(root, { yPercent: -100, duration: 0.55, ease: "power4.inOut" }, "+=0.16");
 
     // Skip: click o qualunque tasto → salta alla fine
     const skip = () => tl.progress(1);
@@ -66,28 +90,47 @@ export function Preloader({ tagline }: { tagline: string }) {
       window.removeEventListener("keydown", skip);
       tl.kill();
     };
-  }, [show]);
+    // `isHome` viene da uno useState senza setter: è costante, l'effetto resta
+    // a esecuzione singola.
+  }, [isHome]);
+
+  /*
+   * Scroll bloccato finché il pannello copre la home: senza, si potrebbe
+   * arrivare al wipe già a metà conversione della hero. Sulle pagine interne
+   * niente lock — `overflow: hidden` azzera lo scroll e vanificherebbe il
+   * ripristino della posizione al reload.
+   */
+  useEffect(() => {
+    if (!show || !isHome) return;
+    document.documentElement.classList.add("tk-locked");
+    return () => document.documentElement.classList.remove("tk-locked");
+  }, [show, isHome]);
 
   if (!show) return null;
 
   return (
-    <div
-      ref={rootRef}
-      role="presentation"
-      aria-hidden
-      className="fixed inset-0 z-[90] flex cursor-pointer flex-col items-center justify-center gap-6 bg-deep"
-    >
-      <p className="font-display flex overflow-hidden text-[clamp(2rem,7vw,4.5rem)] font-semibold text-white">
-        {"TEKNO KLIMA".split("").map((ch, i) => (
-          <span key={i} data-letter className="inline-block will-change-transform">
-            {ch === " " ? " " : ch}
-          </span>
-        ))}
-      </p>
-      <div className="h-px w-[min(60vw,20rem)] overflow-hidden bg-white/10">
-        <div data-line className="h-full w-full origin-left scale-x-0 bg-cyan" />
+    <>
+      <div
+        ref={rootRef}
+        role="presentation"
+        aria-hidden
+        className="tk-preloader fixed inset-0 z-[90] flex cursor-pointer flex-col items-center justify-center gap-7 bg-white"
+      >
+        {/* Fondo chiaro: il marchio va mostrato nei suoi colori ufficiali,
+            non in negativo — è il momento in cui si presenta. */}
+        <div data-mark className="h-[clamp(4.5rem,14vw,8.5rem)]">
+          <TkMark animatable className="h-full w-auto overflow-visible" />
+        </div>
+        <p data-tagline className="tech-label text-steel">
+          {tagline}
+        </p>
       </div>
-      <p className="tech-label text-white/40">{tagline}</p>
-    </div>
+      {/* Senza JS la timeline non parte mai: il pannello non deve esistere. */}
+      <noscript
+        dangerouslySetInnerHTML={{
+          __html: "<style>.tk-preloader{display:none!important}</style>",
+        }}
+      />
+    </>
   );
 }

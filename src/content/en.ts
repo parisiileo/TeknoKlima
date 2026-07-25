@@ -4,16 +4,18 @@ import type { Content } from "./types";
 export const en: Content = {
   site: {
     name: "Tekno Klima",
+    legalName: "Tekno Klima S.n.c. di Akshija Ahmed & C.",
     payoffPrimary: "We power your comfort",
     payoffSecondary: "Reliability you breathe every day.",
     phone: "346 420 5357",
     phoneHref: "tel:+393464205357",
     email: "info@teknoklima.bz.it",
     emailHref: "mailto:info@teknoklima.bz.it",
-    address: "Viale Druso 107, 39100 Bolzano (BZ), Italy",
+    address: "Via Toni Ebner 9, 39100 Bolzano (BZ), Italy",
     instagram: "@teknoklima.bz",
     instagramHref: "https://www.instagram.com/teknoklima.bz",
-    vat: "VAT 00000000000", // [PLACEHOLDER]
+    vat: "VAT 03281740211",
+    vatNumber: "03281740211",
     city: "Bolzano",
     region: "South Tyrol",
   },
@@ -21,8 +23,6 @@ export const en: Content = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Air Conditioning", href: "/climatizzazione" },
-    { label: "Electrical Systems", href: "/impianti-elettrici" },
-    { label: "Lighting", href: "/illuminazione" },
     { label: "Gallery", href: "/galleria" },
     { label: "About Us", href: "/chi-siamo" },
     { label: "Contact", href: "/contatti" },
@@ -35,18 +35,18 @@ export const en: Content = {
   },
 
   hero: {
-    label: "Technical systems — Bolzano / South Tyrol",
+    label: "Air conditioning — Bolzano / South Tyrol",
     line1: "We power",
     line2Pre: "your ",
     line2Highlight: "comfort",
-    lead: "Reliability you breathe every day. Air conditioning, electrical systems and lighting in Bolzano and throughout South Tyrol.",
-    ctaServices: "Our services",
+    lead: "Reliability you breathe every day. Air conditioning systems for homes, offices and businesses in Bolzano and throughout South Tyrol. Official Mitsubishi Heavy Industries service centre.",
+    ctaServices: "Our service",
     scroll: "Scroll",
   },
 
   servicesSection: {
     label: "What we do",
-    title: { pre: "Three specialties, one standard: ", highlight: "done right", post: "." },
+    title: { pre: "One specialty, one standard: ", highlight: "done right", post: "." },
   },
 
   services: [
@@ -84,72 +84,6 @@ export const en: Content = {
         { title: "Ongoing support", text: "Maintenance, sanitisation and after-sales service." },
       ],
     },
-    {
-      slug: "impianti-elettrici",
-      num: "02",
-      title: "Electrical Systems",
-      short: "Residential and industrial electrical systems — safe and innovative, for homes and businesses.",
-      heroTitle: "Safe energy, for home and business",
-      heroText:
-        "We build residential and industrial electrical systems — safe and innovative, for homes and companies. Every project is followed from the first consultation to after-sales support.",
-      features: [
-        {
-          title: "Residential systems",
-          text: "Electrical systems for homes: safety, functionality and readiness for tomorrow's technology.",
-        },
-        {
-          title: "Industrial systems",
-          text: "Solutions for companies and production facilities, engineered for reliability and continuity.",
-        },
-        {
-          title: "Safety first",
-          text: "Code-compliant work with certified materials and careful testing of every installation.",
-        },
-        {
-          title: "Free consultation and site survey",
-          text: "We find the best solution together, with a clear, transparent quote.",
-        },
-      ],
-      process: [
-        { title: "Needs analysis", text: "Free site survey and a careful ear for your requirements." },
-        { title: "Design", text: "A safe, efficient and expandable system layout." },
-        { title: "Installation", text: "Workmanlike installation — fast and punctual." },
-        { title: "Testing and support", text: "Final inspection and ongoing assistance." },
-      ],
-    },
-    {
-      slug: "illuminazione",
-      num: "03",
-      title: "Lighting",
-      short: "Custom lighting solutions for every space.",
-      heroTitle: "The right light, for every space",
-      heroText:
-        "We design custom lighting solutions for every environment: functional, scenic and efficient light that brings out the best in your spaces.",
-      features: [
-        {
-          title: "Tailor-made lighting",
-          text: "Every space is different: we design the ideal lighting solution for homes, offices and shops.",
-        },
-        {
-          title: "Energy efficiency",
-          text: "LED technology and consumption-conscious design: more light, less waste.",
-        },
-        {
-          title: "Enhancing your spaces",
-          text: "Light as a design element: accents, scenes and moods that transform rooms.",
-        },
-        {
-          title: "Integrated with your wiring",
-          text: "Lighting perfectly integrated with the electrical system, for a clean, reliable result.",
-        },
-      ],
-      process: [
-        { title: "Survey and listening", text: "We learn how you live your spaces and what you want to highlight." },
-        { title: "Lighting design", text: "Fixtures, colour temperatures and scenes, carefully planned." },
-        { title: "Installation", text: "Precise, clean fitting, integrated with the electrical system." },
-        { title: "Fine tuning", text: "Final adjustment of scenes and intensity — exactly how you want it." },
-      ],
-    },
   ],
 
   servicePage: {
@@ -185,8 +119,8 @@ export const en: Content = {
     items: [
       {
         title: "Mitsubishi Heavy Industries",
-        subtitle: "Authorised Service Centre",
-        text: "We are an authorised Mitsubishi Heavy Industries service centre: expertise certified directly by the manufacturer.",
+        subtitle: "Official Service Centre",
+        text: "We are an official Mitsubishi Heavy Industries service centre: expertise certified directly by the manufacturer.",
       },
       {
         title: "F-Gas Certification",
@@ -198,10 +132,44 @@ export const en: Content = {
 
   stats: [
     { value: 250, suffix: "+", label: "Systems installed" },
-    { value: 98, suffix: "%", label: "Satisfied clients" },
+    { value: 100, suffix: "%", label: "Satisfied clients" },
     { value: 24, suffix: "h", label: "Average response time" },
     { value: 100, suffix: "%", label: "Free site surveys" },
   ],
+
+  reviews: {
+    label: "Reviews",
+    title: { pre: "What our ", highlight: "clients", post: " say" },
+    source: "Review on Google",
+    ratingAria: "5 out of 5 stars",
+    items: [
+      {
+        name: "Viviana Di Vita",
+        date: "5 hours ago",
+        text: "Air conditioning installed in record time, even in the middle of summer. Perfect and fast work. Highly recommended!",
+      },
+      {
+        name: "Emanuele Iachelli",
+        date: "2 weeks ago",
+        text: "After several bad experiences, they solved my problem. An expert, clear and honest team. Hard to find better.",
+      },
+      {
+        name: "Riccardo Petti",
+        date: "3 weeks ago",
+        text: "Super fast and professional. Honest prices.",
+      },
+      {
+        name: "Alessandro Randon",
+        date: "2 months ago",
+        text: "Medi from Tekno Klima is a rare kind of professional. Punctual for the survey, quick with the quote, highly professional in the work. Best value for money in Bolzano.",
+      },
+      {
+        name: "Genert Olldashi",
+        date: "10 months ago",
+        text: "I had the pleasure of working with Medi from Tekno Klima and can say without hesitation that he is extremely competent, reliable and professional.",
+      },
+    ],
+  },
 
   contactStrip: {
     label: "Contact",
@@ -214,14 +182,14 @@ export const en: Content = {
     heroLabel: "About us",
     heroTitle: "Technical passion, everyday comfort",
     story: [
-      "Tekno Klima was born from passion and experience in the field of technical systems, with the goal of offering reliable, modern solutions.",
-      "We are a young, dynamic company with solid technical skills and a constant focus on quality. We work mainly in Bolzano and throughout South Tyrol: air conditioning, residential and industrial electrical systems, custom lighting and ongoing assistance.",
-      "We follow every project from the first consultation to after-sales support — because comfort isn't a moment: it's every day.",
+      "Tekno Klima was born from passion and experience in the field of air conditioning, with the goal of offering reliable, modern solutions.",
+      "We are a young, dynamic company with solid technical skills and a constant focus on quality. We work mainly in Bolzano and throughout South Tyrol: design, installation, maintenance and sanitisation of air conditioning systems, with ongoing assistance.",
+      "As an official Mitsubishi Heavy Industries service centre, we follow every project from the first consultation to after-sales support — because comfort isn't a moment: it's every day.",
     ],
     whereLabel: "Where we work",
     whereTitle: "Bolzano and all of South Tyrol",
     whereText:
-      "Based at Viale Druso 107, 39100 Bolzano (BZ). Fast, punctual call-outs; free consultations and site surveys.",
+      "Based at Via Toni Ebner 9, 39100 Bolzano (BZ). Fast, punctual call-outs; free consultations and site surveys.",
     valuesLabel: "Our values",
     valuesTitle: "The values that guide everything we do",
     values: [
@@ -241,20 +209,15 @@ export const en: Content = {
     filterLabel: "Filter by category",
     filterAll: "All",
     categories: [
-      { key: "clima", label: "Air Conditioning" },
-      { key: "elettrico", label: "Electrical Systems" },
-      { key: "luce", label: "Lighting" },
+      { key: "split", label: "Split & multi-split" },
+      { key: "canalizzato", label: "Ducted" },
+      { key: "manutenzione", label: "Maintenance" },
     ],
     items: [
-      { id: 1, title: "Multi-split installation — apartment", categoryKey: "clima", placeholder: { from: "#1fa8dc", to: "#0b1f33" } },
-      { id: 2, title: "Ducted system — office", categoryKey: "clima", placeholder: { from: "#0e7bb8", to: "#10293f" } },
-      { id: 3, title: "Electrical panel — company", categoryKey: "elettrico", placeholder: { from: "#ff7a3d", to: "#0b1f33" } },
-      { id: 4, title: "LED lighting — shop", categoryKey: "luce", placeholder: { from: "#e85d1f", to: "#10293f" } },
-      { id: 5, title: "Residential split — Bolzano", categoryKey: "clima", placeholder: { from: "#1fa8dc", to: "#0e7bb8" } },
-      { id: 6, title: "Residential wiring — new build", categoryKey: "elettrico", placeholder: { from: "#4a6178", to: "#0b1f33" } },
-      { id: 7, title: "Accent lighting — living room", categoryKey: "luce", placeholder: { from: "#ff7a3d", to: "#e85d1f" } },
-      { id: 8, title: "System sanitisation — restaurant", categoryKey: "clima", placeholder: { from: "#0e7bb8", to: "#0b1f33" } },
-      { id: 9, title: "Outdoor lighting — terrace", categoryKey: "luce", placeholder: { from: "#10293f", to: "#1fa8dc" } },
+      { id: 1, title: "Multi-split installation — apartment", categoryKey: "split", placeholder: { from: "#1fa8dc", to: "#0b1f33" } },
+      { id: 2, title: "Ducted system — office", categoryKey: "canalizzato", placeholder: { from: "#0e7bb8", to: "#10293f" } },
+      { id: 5, title: "Residential split — Bolzano", categoryKey: "split", placeholder: { from: "#1fa8dc", to: "#0e7bb8" } },
+      { id: 8, title: "System sanitisation — restaurant", categoryKey: "manutenzione", placeholder: { from: "#0e7bb8", to: "#0b1f33" } },
     ],
     open: "Open",
     close: "Close",
@@ -277,8 +240,8 @@ export const en: Content = {
       success: "Request ready! Your email client will open to send it.",
       subjectPrefix: "Quote request",
     },
-    mapsEmbed: "https://www.google.com/maps?q=Viale+Druso+107,+39100+Bolzano+BZ&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Viale+Druso+107+39100+Bolzano",
+    mapsEmbed: "https://www.google.com/maps?q=Via+Toni+Ebner+9,+39100+Bolzano+BZ&output=embed",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=Via+Toni+Ebner+9+39100+Bolzano",
   },
 
   footer: {
@@ -286,7 +249,7 @@ export const en: Content = {
     ctaTitle: "We power your comfort.",
     ctaTitleMuted: "Let's talk.",
     blurb:
-      "Reliability you breathe every day. Air conditioning, electrical systems and lighting in Bolzano and throughout South Tyrol.",
+      "Reliability you breathe every day. Air conditioning in Bolzano and throughout South Tyrol. Official Mitsubishi Heavy Industries service centre.",
     exploreLabel: "Explore",
     contactsLabel: "Contact",
   },
@@ -295,39 +258,29 @@ export const en: Content = {
 
   meta: {
     home: {
-      title: "Tekno Klima — Air conditioning and electrical systems in Bolzano",
+      title: "Tekno Klima — Air conditioning in Bolzano",
       description:
-        "We power your comfort: air conditioning, electrical systems and lighting in Bolzano and South Tyrol. Free site surveys, F-Gas certified technicians.",
+        "We power your comfort: air conditioning installation and service in Bolzano and South Tyrol. Official Mitsubishi Heavy Industries service centre, F-Gas certified technicians.",
     },
     climatizzazione: {
       title: "Air Conditioning — Installation in Bolzano",
       description:
         "Air conditioner installation in Bolzano: split, multi-split and ducted systems. Free site survey, F-Gas certified technicians, fast service in South Tyrol.",
     },
-    impiantiElettrici: {
-      title: "Residential and industrial electrical systems in Bolzano",
-      description:
-        "Residential and industrial electrical systems in Bolzano and South Tyrol: safe, innovative, code-compliant. Free consultation and survey, transparent quotes.",
-    },
-    illuminazione: {
-      title: "Custom lighting in Bolzano",
-      description:
-        "Custom lighting solutions for homes, offices and shops in Bolzano: lighting design, high-efficiency LED, integrated installation.",
-    },
     galleria: {
-      title: "Gallery — Systems installed in Bolzano",
+      title: "Gallery — Air conditioning installed in Bolzano",
       description:
-        "Our work: air conditioning, electrical systems and lighting installed in Bolzano and South Tyrol by Tekno Klima.",
+        "Our work: air conditioning systems installed in Bolzano and South Tyrol by Tekno Klima.",
     },
     chiSiamo: {
-      title: "About Us — Tekno Klima, technical systems in Bolzano",
+      title: "About Us — Tekno Klima, air conditioning in Bolzano",
       description:
-        "Tekno Klima: a young, dynamic Bolzano company specialised in air conditioning, electrical systems and lighting. Integrity, transparency, energy efficiency.",
+        "Tekno Klima: a young, dynamic Bolzano company specialised in air conditioning. Official Mitsubishi Heavy Industries service centre. Integrity, transparency, energy efficiency.",
     },
     contatti: {
       title: "Contact — Request a quote in Bolzano",
       description:
-        "Contact Tekno Klima in Bolzano: free quotes and site surveys for air conditioning, electrical systems and lighting. Viale Druso 107, tel. +39 346 420 5357.",
+        "Contact Tekno Klima in Bolzano: free quotes and site surveys for air conditioning. Via Toni Ebner 9, tel. +39 346 420 5357.",
     },
   },
 };

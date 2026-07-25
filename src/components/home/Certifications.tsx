@@ -1,6 +1,7 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Reveal, StaggerReveal } from "@/components/ui/Reveal";
 import { HighlightTitle } from "@/components/ui/HighlightTitle";
+import { MitsubishiLogo } from "@/components/ui/MitsubishiLogo";
 import type { Content } from "@/content";
 
 /** Certificazioni e partnership ufficiali. */
@@ -25,6 +26,11 @@ export function Certifications({ t }: { t: Content }) {
                 aria-hidden
                 className="absolute -bottom-20 -right-20 h-56 w-56 rounded-full bg-[radial-gradient(circle,rgba(31,168,220,0.25),transparent_70%)]"
               />
+              {c.title.includes("Mitsubishi") && (
+                <div className="mb-6 flex h-14 w-fit items-center rounded-xl bg-white px-4 text-deep">
+                  <MitsubishiLogo withWordmark />
+                </div>
+              )}
               <p className="tech-label text-cyan">{c.subtitle}</p>
               <h3 className="font-display mt-3 text-2xl font-semibold">{c.title}</h3>
               <p className="mt-4 max-w-md text-sm leading-relaxed text-white/70">{c.text}</p>

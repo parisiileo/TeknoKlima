@@ -4,16 +4,18 @@ import type { Content } from "./types";
 export const it: Content = {
   site: {
     name: "Tekno Klima",
+    legalName: "Tekno Klima S.n.c. di Akshija Ahmed & C.",
     payoffPrimary: "Diamo energia al tuo comfort",
     payoffSecondary: "Affidabilità che respiri ogni giorno.",
     phone: "346 420 5357",
     phoneHref: "tel:+393464205357",
     email: "info@teknoklima.bz.it",
     emailHref: "mailto:info@teknoklima.bz.it",
-    address: "Viale Druso 107, 39100 Bolzano (BZ)",
+    address: "Via Toni Ebner 9, 39100 Bolzano (BZ)",
     instagram: "@teknoklima.bz",
     instagramHref: "https://www.instagram.com/teknoklima.bz",
-    vat: "P.IVA 00000000000", // [PLACEHOLDER — inserire P.IVA reale]
+    vat: "P.IVA 03281740211",
+    vatNumber: "03281740211",
     city: "Bolzano",
     region: "Alto Adige",
   },
@@ -21,8 +23,6 @@ export const it: Content = {
   nav: [
     { label: "Home", href: "/" },
     { label: "Climatizzazione", href: "/climatizzazione" },
-    { label: "Impianti Elettrici", href: "/impianti-elettrici" },
-    { label: "Illuminazione", href: "/illuminazione" },
     { label: "Galleria", href: "/galleria" },
     { label: "Chi Siamo", href: "/chi-siamo" },
     { label: "Contatti", href: "/contatti" },
@@ -35,18 +35,18 @@ export const it: Content = {
   },
 
   hero: {
-    label: "Impianti tecnologici — Bolzano / Alto Adige",
+    label: "Climatizzazione — Bolzano / Alto Adige",
     line1: "Diamo energia",
     line2Pre: "al tuo ",
     line2Highlight: "comfort",
-    lead: "Affidabilità che respiri ogni giorno. Climatizzazione, impianti elettrici e illuminazione a Bolzano e in tutto l'Alto Adige.",
-    ctaServices: "Scopri i servizi",
+    lead: "Affidabilità che respiri ogni giorno. Impianti di climatizzazione per abitazioni, uffici e attività commerciali a Bolzano e in tutto l'Alto Adige. Centro assistenza ufficiale Mitsubishi Heavy Industries.",
+    ctaServices: "Scopri il servizio",
     scroll: "Scroll",
   },
 
   servicesSection: {
     label: "Cosa facciamo",
-    title: { pre: "Tre specialità, un solo standard: ", highlight: "fatto bene", post: "." },
+    title: { pre: "Una specialità, un solo standard: ", highlight: "fatto bene", post: "." },
   },
 
   services: [
@@ -84,72 +84,6 @@ export const it: Content = {
         { title: "Assistenza continua", text: "Manutenzione, sanificazione e supporto post-vendita." },
       ],
     },
-    {
-      slug: "impianti-elettrici",
-      num: "02",
-      title: "Impianti Elettrici",
-      short: "Impianti elettrici civili e industriali, sicuri e innovativi, per abitazioni e aziende.",
-      heroTitle: "Energia sicura, per casa e azienda",
-      heroText:
-        "Realizziamo impianti elettrici civili e industriali, sicuri e innovativi, per abitazioni e aziende. Ogni progetto è seguito dalla consulenza iniziale all'assistenza post-vendita.",
-      features: [
-        {
-          title: "Impianti civili",
-          text: "Impianti elettrici per abitazioni: sicurezza, funzionalità e predisposizione per le tecnologie di domani.",
-        },
-        {
-          title: "Impianti industriali",
-          text: "Soluzioni per aziende e attività produttive, progettate per affidabilità e continuità di esercizio.",
-        },
-        {
-          title: "Sicurezza prima di tutto",
-          text: "Realizzazioni a norma, con materiali certificati e verifiche accurate su ogni intervento.",
-        },
-        {
-          title: "Consulenza e sopralluoghi gratuiti",
-          text: "Valutiamo insieme la soluzione migliore, con un preventivo chiaro e trasparente.",
-        },
-      ],
-      process: [
-        { title: "Analisi delle esigenze", text: "Sopralluogo gratuito e ascolto delle tue necessità." },
-        { title: "Progettazione", text: "Schema d'impianto sicuro, efficiente e ampliabile." },
-        { title: "Realizzazione", text: "Installazione a regola d'arte, con interventi veloci e puntuali." },
-        { title: "Verifica e assistenza", text: "Collaudo finale e supporto continuo nel tempo." },
-      ],
-    },
-    {
-      slug: "illuminazione",
-      num: "03",
-      title: "Illuminazione",
-      short: "Soluzioni di illuminazione personalizzate per ogni ambiente.",
-      heroTitle: "La luce giusta, per ogni ambiente",
-      heroText:
-        "Progettiamo soluzioni di illuminazione personalizzate per ogni ambiente: valorizziamo gli spazi con luce funzionale, scenografica ed efficiente.",
-      features: [
-        {
-          title: "Illuminazione su misura",
-          text: "Ogni ambiente ha esigenze diverse: studiamo la soluzione luminosa ideale per abitazioni, uffici e negozi.",
-        },
-        {
-          title: "Efficienza energetica",
-          text: "Tecnologia LED e progettazione attenta ai consumi: più luce, meno spreco.",
-        },
-        {
-          title: "Valorizzazione degli spazi",
-          text: "La luce come elemento di design: accenti, scenografie e atmosfere che trasformano gli ambienti.",
-        },
-        {
-          title: "Integrazione impiantistica",
-          text: "Illuminazione perfettamente integrata con l'impianto elettrico, per un risultato pulito e affidabile.",
-        },
-      ],
-      process: [
-        { title: "Sopralluogo e ascolto", text: "Capiamo come vivi gli spazi e cosa vuoi valorizzare." },
-        { title: "Progetto illuminotecnico", text: "Studio di corpi luminosi, temperature colore e scenari." },
-        { title: "Installazione", text: "Posa precisa e pulita, integrata con l'impianto elettrico." },
-        { title: "Messa a punto", text: "Regolazione finale di scenari e intensità, come li vuoi tu." },
-      ],
-    },
   ],
 
   servicePage: {
@@ -185,8 +119,8 @@ export const it: Content = {
     items: [
       {
         title: "Mitsubishi Heavy Industries",
-        subtitle: "Centro Assistenza Autorizzata",
-        text: "Siamo centro assistenza autorizzato Mitsubishi Heavy Industries: competenza certificata direttamente dal produttore.",
+        subtitle: "Centro Assistenza Ufficiale",
+        text: "Siamo centro assistenza ufficiale Mitsubishi Heavy Industries: competenza certificata direttamente dal produttore.",
       },
       {
         title: "Certificazione F-Gas",
@@ -198,10 +132,44 @@ export const it: Content = {
 
   stats: [
     { value: 250, suffix: "+", label: "Impianti installati" },
-    { value: 98, suffix: "%", label: "Clienti soddisfatti" },
+    { value: 100, suffix: "%", label: "Clienti soddisfatti" },
     { value: 24, suffix: "h", label: "Tempo medio di risposta" },
     { value: 100, suffix: "%", label: "Sopralluoghi gratuiti" },
   ],
+
+  reviews: {
+    label: "Recensioni",
+    title: { pre: "La parola ai ", highlight: "clienti" },
+    source: "Recensione su Google",
+    ratingAria: "5 stelle su 5",
+    items: [
+      {
+        name: "Viviana Di Vita",
+        date: "5 ore fa",
+        text: "Installazione dell'aria condizionata in tempi record anche se in piena estate. Lavoro perfetto e veloce. Consiglio a tutti!",
+      },
+      {
+        name: "Emanuele Iachelli",
+        date: "2 settimane fa",
+        text: "Dopo diverse esperienze negative, grazie a loro ho risolto il mio problema. Team esperto, chiaro e onesto. Difficile trovare di meglio.",
+      },
+      {
+        name: "Riccardo Petti",
+        date: "3 settimane fa",
+        text: "Super rapidi e professionali. Prezzi onesti.",
+      },
+      {
+        name: "Alessandro Randon",
+        date: "2 mesi fa",
+        text: "Medi di Tekno Klima è un professionista come pochi. Puntuale nel sopralluogo, rapido nel preventivo, super professionale nel lavoro. Miglior rapporto qualità prezzo a Bolzano.",
+      },
+      {
+        name: "Genert Olldashi",
+        date: "10 mesi fa",
+        text: "Ho avuto il piacere di collaborare con Medi di Tekno Klima e posso dire senza esitazioni che è una persona estremamente competente, affidabile e professionale.",
+      },
+    ],
+  },
 
   contactStrip: {
     label: "Contatti",
@@ -214,14 +182,14 @@ export const it: Content = {
     heroLabel: "Chi siamo",
     heroTitle: "Passione tecnica, comfort quotidiano",
     story: [
-      "Tekno Klima nasce dalla passione e dall'esperienza nel settore degli impianti tecnologici, con l'obiettivo di offrire soluzioni affidabili e moderne.",
-      "Siamo un'azienda giovane ma dinamica, con solide competenze tecniche e un'attenzione costante alla qualità. Operiamo principalmente a Bolzano e in tutto l'Alto Adige: climatizzazione, impianti elettrici civili e industriali, illuminazione personalizzata e assistenza continua.",
-      "Accompagniamo ogni progetto dalla consulenza iniziale all'assistenza post-vendita, perché il comfort non è un momento: è ogni giorno.",
+      "Tekno Klima nasce dalla passione e dall'esperienza nel settore della climatizzazione, con l'obiettivo di offrire soluzioni affidabili e moderne.",
+      "Siamo un'azienda giovane ma dinamica, con solide competenze tecniche e un'attenzione costante alla qualità. Operiamo principalmente a Bolzano e in tutto l'Alto Adige: progettazione, installazione, manutenzione e sanificazione di impianti di climatizzazione, con assistenza continua.",
+      "Come centro assistenza ufficiale Mitsubishi Heavy Industries, accompagniamo ogni progetto dalla consulenza iniziale all'assistenza post-vendita, perché il comfort non è un momento: è ogni giorno.",
     ],
     whereLabel: "Dove operiamo",
     whereTitle: "Bolzano e tutto l'Alto Adige",
     whereText:
-      "Sede in Viale Druso 107, 39100 Bolzano (BZ). Interventi veloci e puntuali, consulenza e sopralluoghi gratuiti.",
+      "Sede in Via Toni Ebner 9, 39100 Bolzano (BZ). Interventi veloci e puntuali, consulenza e sopralluoghi gratuiti.",
     valuesLabel: "I nostri valori",
     valuesTitle: "I valori che guidano ogni nostro intervento",
     values: [
@@ -241,20 +209,15 @@ export const it: Content = {
     filterLabel: "Filtra per categoria",
     filterAll: "Tutti",
     categories: [
-      { key: "clima", label: "Climatizzazione" },
-      { key: "elettrico", label: "Impianti Elettrici" },
-      { key: "luce", label: "Illuminazione" },
+      { key: "split", label: "Split e multisplit" },
+      { key: "canalizzato", label: "Canalizzati" },
+      { key: "manutenzione", label: "Manutenzione" },
     ],
     items: [
-      { id: 1, title: "Installazione multisplit — appartamento", categoryKey: "clima", placeholder: { from: "#1fa8dc", to: "#0b1f33" } },
-      { id: 2, title: "Impianto canalizzato — ufficio", categoryKey: "clima", placeholder: { from: "#0e7bb8", to: "#10293f" } },
-      { id: 3, title: "Quadro elettrico — azienda", categoryKey: "elettrico", placeholder: { from: "#ff7a3d", to: "#0b1f33" } },
-      { id: 4, title: "Illuminazione LED — negozio", categoryKey: "luce", placeholder: { from: "#e85d1f", to: "#10293f" } },
-      { id: 5, title: "Split residenziale — Bolzano", categoryKey: "clima", placeholder: { from: "#1fa8dc", to: "#0e7bb8" } },
-      { id: 6, title: "Impianto civile — nuova costruzione", categoryKey: "elettrico", placeholder: { from: "#4a6178", to: "#0b1f33" } },
-      { id: 7, title: "Luci d'accento — soggiorno", categoryKey: "luce", placeholder: { from: "#ff7a3d", to: "#e85d1f" } },
-      { id: 8, title: "Sanificazione impianto — ristorante", categoryKey: "clima", placeholder: { from: "#0e7bb8", to: "#0b1f33" } },
-      { id: 9, title: "Illuminazione esterna — terrazza", categoryKey: "luce", placeholder: { from: "#10293f", to: "#1fa8dc" } },
+      { id: 1, title: "Installazione multisplit — appartamento", categoryKey: "split", placeholder: { from: "#1fa8dc", to: "#0b1f33" } },
+      { id: 2, title: "Impianto canalizzato — ufficio", categoryKey: "canalizzato", placeholder: { from: "#0e7bb8", to: "#10293f" } },
+      { id: 5, title: "Split residenziale — Bolzano", categoryKey: "split", placeholder: { from: "#1fa8dc", to: "#0e7bb8" } },
+      { id: 8, title: "Sanificazione impianto — ristorante", categoryKey: "manutenzione", placeholder: { from: "#0e7bb8", to: "#0b1f33" } },
     ],
     open: "Apri",
     close: "Chiudi",
@@ -277,8 +240,8 @@ export const it: Content = {
       success: "Richiesta pronta! Si aprirà il tuo client email per l'invio.",
       subjectPrefix: "Richiesta preventivo",
     },
-    mapsEmbed: "https://www.google.com/maps?q=Viale+Druso+107,+39100+Bolzano+BZ&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Viale+Druso+107+39100+Bolzano",
+    mapsEmbed: "https://www.google.com/maps?q=Via+Toni+Ebner+9,+39100+Bolzano+BZ&output=embed",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=Via+Toni+Ebner+9+39100+Bolzano",
   },
 
   footer: {
@@ -286,7 +249,7 @@ export const it: Content = {
     ctaTitle: "Diamo energia al tuo comfort.",
     ctaTitleMuted: "Parliamone.",
     blurb:
-      "Affidabilità che respiri ogni giorno. Climatizzazione, impianti elettrici e illuminazione a Bolzano e in tutto l'Alto Adige.",
+      "Affidabilità che respiri ogni giorno. Impianti di climatizzazione a Bolzano e in tutto l'Alto Adige. Centro assistenza ufficiale Mitsubishi Heavy Industries.",
     exploreLabel: "Esplora",
     contactsLabel: "Contatti",
   },
@@ -295,39 +258,29 @@ export const it: Content = {
 
   meta: {
     home: {
-      title: "Tekno Klima — Climatizzazione e impianti a Bolzano",
+      title: "Tekno Klima — Climatizzazione a Bolzano",
       description:
-        "Diamo energia al tuo comfort: climatizzatori, impianti elettrici e illuminazione a Bolzano e in Alto Adige. Sopralluoghi gratuiti, tecnici certificati F-Gas.",
+        "Diamo energia al tuo comfort: installazione e assistenza climatizzatori a Bolzano e in Alto Adige. Centro assistenza ufficiale Mitsubishi Heavy Industries, tecnici certificati F-Gas.",
     },
     climatizzazione: {
       title: "Climatizzazione — Installazione climatizzatori a Bolzano",
       description:
         "Installazione climatizzatori a Bolzano: split, multisplit e impianti canalizzati. Sopralluogo gratuito, tecnici certificati F-Gas, assistenza rapida in Alto Adige.",
     },
-    impiantiElettrici: {
-      title: "Impianti Elettrici civili e industriali a Bolzano",
-      description:
-        "Impianti elettrici civili e industriali a Bolzano e in Alto Adige: sicuri, innovativi e a norma. Consulenza e sopralluoghi gratuiti, preventivo trasparente.",
-    },
-    illuminazione: {
-      title: "Illuminazione personalizzata a Bolzano",
-      description:
-        "Soluzioni di illuminazione personalizzate per casa, ufficio e negozi a Bolzano: progettazione illuminotecnica, LED ad alta efficienza, installazione integrata.",
-    },
     galleria: {
-      title: "Galleria lavori — Impianti realizzati a Bolzano",
+      title: "Galleria lavori — Impianti di climatizzazione a Bolzano",
       description:
-        "I nostri lavori: climatizzatori, impianti elettrici e illuminazione realizzati a Bolzano e in Alto Adige da Tekno Klima.",
+        "I nostri lavori: impianti di climatizzazione realizzati a Bolzano e in Alto Adige da Tekno Klima.",
     },
     chiSiamo: {
-      title: "Chi Siamo — Tekno Klima, impianti tecnologici a Bolzano",
+      title: "Chi Siamo — Tekno Klima, climatizzazione a Bolzano",
       description:
-        "Tekno Klima: azienda giovane e dinamica di Bolzano specializzata in climatizzazione, impianti elettrici e illuminazione. Integrità, trasparenza, efficienza energetica.",
+        "Tekno Klima: azienda giovane e dinamica di Bolzano specializzata in climatizzazione. Centro assistenza ufficiale Mitsubishi Heavy Industries. Integrità, trasparenza, efficienza energetica.",
     },
     contatti: {
       title: "Contatti — Richiedi un preventivo a Bolzano",
       description:
-        "Contatta Tekno Klima a Bolzano: preventivi e sopralluoghi gratuiti per climatizzatori, impianti elettrici e illuminazione. Viale Druso 107, tel. 346 420 5357.",
+        "Contatta Tekno Klima a Bolzano: preventivi e sopralluoghi gratuiti per impianti di climatizzazione. Via Toni Ebner 9, tel. 346 420 5357.",
     },
   },
 };

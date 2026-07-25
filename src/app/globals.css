@@ -194,6 +194,106 @@ html.js [data-reveal-line] > * {
   }
 }
 
+/* ============================================
+   Home hero — titolo in due tempi (vedi Hero.tsx)
+   Marchio "TEKNO KLIMA" e titolo di campagna condividono la stessa cella:
+   label, lead, CTA e hint restano fermi, cambia solo il titolo. La sezione
+   è più alta di uno schermo e quel margine è la corsa di scroll in cui
+   avviene la conversione.
+   ============================================ */
+.hero-runway {
+  min-height: 100svh;
+}
+html.js .hero-runway {
+  height: 175svh;
+}
+/* Il marchio vive solo dove la conversione può avvenire: senza JS resterebbe
+   sovrapposto al titolo di campagna, che non verrebbe mai scoperto. */
+.hero-title-brand {
+  display: none;
+}
+html.js .hero-title-brand {
+  display: block;
+}
+@media (prefers-reduced-motion: no-preference) {
+  /* Stato iniziale del titolo di campagna prima che GSAP prenda il controllo:
+     evita che lampeggi sopra il marchio al primo paint. */
+  html.js .hero-title-copy {
+    opacity: 0;
+  }
+}
+
+/*
+ * Fallback (nessuna conversione): hero classica, a tutta altezza e col solo
+ * titolo di campagna. Vale per prefers-reduced-motion e per gli schermi bassi
+ * — telefoni in orizzontale, viewport corte — dove la hero non sta in 100svh
+ * e, dentro un contenitore sticky, l'eccedenza resterebbe ritagliata e
+ * irraggiungibile. La soglia è la stessa della gsap.matchMedia in Hero.tsx:
+ * vanno tenute allineate.
+ */
+@media (prefers-reduced-motion: reduce), (max-height: 639px) {
+  html.js .hero-runway {
+    height: auto;
+  }
+  html.js .hero-title-brand {
+    display: none;
+  }
+  html.js .hero-title-copy {
+    opacity: 1;
+  }
+}
+
+/* ============================================
+   Recensioni — riga unica a tutta larghezza
+   Le card escono dal container e proseguono fin oltre i bordi dello
+   schermo: i due lati sono sfumati, così si legge che la riga continua.
+   Statica: si scorre solo a mano, nessuna animazione di movimento.
+   ============================================ */
+.reviews-row {
+  /*
+   * Allinea la prima card al contenuto del container-tk (stessa max-width e
+   * stesso gutter), ma lascia che la riga sconfini nei margini. Il padding a
+   * destra tiene l'ultima card staccata dal bordo a fine corsa: perché lo
+   * rispetti anche il contenuto in overflow, la <ul> dentro è `w-max`.
+   */
+  --reviews-pad: max(var(--gutter), calc((100% - 90rem) / 2 + var(--gutter)));
+  /*
+   * Sfumatura uguale sui due lati e più larga del margine, così morde anche
+   * la prima card e non solo l'ultima: a riposo i due bordi si leggono allo
+   * stesso modo. I 4rem oltre il margine sono la porzione di card sfumata,
+   * costante a ogni breakpoint (il margine cambia, la morsicatura no).
+   */
+  --reviews-fade: calc(var(--reviews-pad) + 4rem);
+  overflow-x: auto;
+  padding-inline: var(--reviews-pad);
+  /* Le card hanno bordo e ombra: senza respiro verticale il mask le taglia. */
+  padding-block: 0.25rem;
+  scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--reviews-fade),
+    #000 calc(100% - var(--reviews-fade)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 var(--reviews-fade),
+    #000 calc(100% - var(--reviews-fade)),
+    transparent 100%
+  );
+}
+.reviews-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll bloccato mentre l'intro copre la pagina */
+html.tk-locked,
+html.tk-locked body {
+  overflow: hidden;
+}
+
 /* Riduzione movimento: tutto visibile, niente animazioni */
 @media (prefers-reduced-motion: reduce) {
   html.js [data-reveal],

@@ -64,7 +64,11 @@ export function ServicePage({ locale, t, service }: Props) {
 
       {/* CTA + altri servizi */}
       <section className="section-y">
-        <div className="container-tk grid items-start gap-12 lg:grid-cols-2">
+        <div
+          className={`container-tk grid items-start gap-12 ${
+            others.length > 0 ? "lg:grid-cols-2" : ""
+          }`}
+        >
           <div className="flex flex-col gap-5">
             <SectionLabel>{t.servicePage.ctaLabel}</SectionLabel>
             <Reveal as="h2" className="font-display text-[var(--text-h2)] font-semibold leading-[1.05] text-deep">
@@ -78,6 +82,7 @@ export function ServicePage({ locale, t, service }: Props) {
             </Reveal>
           </div>
 
+          {others.length > 0 && (
           <StaggerReveal className="flex flex-col gap-4" stagger={0.1}>
             {others.map((o) => (
               <Link
@@ -98,6 +103,7 @@ export function ServicePage({ locale, t, service }: Props) {
               </Link>
             ))}
           </StaggerReveal>
+          )}
         </div>
       </section>
     </>

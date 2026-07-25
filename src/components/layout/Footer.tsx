@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { TkLockup } from "@/components/ui/TkLogo";
 import { localeHref, type Content, type Locale } from "@/content";
 
 type Props = { locale: Locale; t: Content };
@@ -29,9 +30,7 @@ export function Footer({ locale, t }: Props) {
       {/* Colonne */}
       <div className="container-tk grid gap-10 py-14 md:grid-cols-3 lg:grid-cols-4">
         <div className="lg:col-span-2">
-          <p className="font-display text-xl font-semibold">
-            TEKNO<span className="text-cyan"> KLIMA</span>
-          </p>
+          <TkLockup variant="light" title={t.site.name} className="h-9 w-auto" />
           <p className="mt-3 max-w-sm text-sm leading-relaxed text-white/60">{t.footer.blurb}</p>
         </div>
 
@@ -68,11 +67,13 @@ export function Footer({ locale, t }: Props) {
         </div>
       </div>
 
-      <div className="container-tk flex flex-col gap-2 border-t border-white/10 py-6 text-xs text-white/40 md:flex-row md:items-center md:justify-between">
-        <p>
-          © {new Date().getFullYear()} {t.site.name} — {t.site.vat}
-        </p>
-        <p>{t.site.address}</p>
+      <div className="container-tk flex flex-col gap-3 border-t border-white/10 py-6 text-xs text-white/40">
+        <p className="text-white/60">{t.site.legalName}</p>
+        <div className="flex flex-col gap-1.5 md:flex-row md:flex-wrap md:items-center md:gap-x-4">
+          <span>{t.site.vat}</span>
+          <span>{t.site.address}</span>
+        </div>
+        <p>© {new Date().getFullYear()} {t.site.name}</p>
       </div>
     </footer>
   );

@@ -4,6 +4,7 @@ import { ServicesOverview } from "@/components/home/ServicesOverview";
 import { WhyUs } from "@/components/home/WhyUs";
 import { Certifications } from "@/components/home/Certifications";
 import { Stats } from "@/components/home/Stats";
+import { Reviews } from "@/components/home/Reviews";
 import { ContactStrip } from "@/components/home/ContactStrip";
 import { getContent, isLocale, locales, defaultLocale } from "@/content";
 
@@ -34,6 +35,7 @@ export default async function HomePage({ params }: PageProps) {
       <WhyUs t={t} />
       <Certifications t={t} />
       <Stats t={t} />
+      <Reviews t={t} />
       <ContactStrip locale={locale} t={t} />
     </>
   );

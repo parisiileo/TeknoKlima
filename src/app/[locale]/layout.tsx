@@ -81,19 +81,22 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     "@context": "https://schema.org",
     "@type": "HVACBusiness",
     name: t.site.name,
+    legalName: t.site.legalName,
     slogan: t.site.payoffPrimary,
     telephone: "+39 346 420 5357",
     email: t.site.email,
     url: `${BASE}/${locale}`,
+    vatID: "IT03281740211",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Viale Druso 107",
+      streetAddress: "Via Toni Ebner 9",
       postalCode: "39100",
       addressLocality: "Bolzano",
       addressRegion: "Trentino-Alto Adige",
       addressCountry: "IT",
     },
     areaServed: "Bolzano / Bozen — Alto Adige / Südtirol",
+    brand: "Mitsubishi Heavy Industries",
     sameAs: [t.site.instagramHref],
   };
 

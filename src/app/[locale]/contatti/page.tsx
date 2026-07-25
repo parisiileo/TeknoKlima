@@ -69,6 +69,13 @@ export default async function ContattiPage({ params }: PageProps) {
                     </a>
                   </li>
                 </ul>
+
+                <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 border-t border-frost-deep/60 pt-5 text-sm">
+                  <dt className="text-steel/70">Ragione sociale</dt>
+                  <dd className="text-steel">{t.site.legalName}</dd>
+                  <dt className="text-steel/70">P.IVA</dt>
+                  <dd className="text-steel">{t.site.vatNumber}</dd>
+                </dl>
               </div>
 
               <div className="overflow-hidden rounded-[var(--radius-card)] border border-frost-deep/60">
