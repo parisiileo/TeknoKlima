@@ -5,19 +5,68 @@ export const en: Content = {
   site: {
     name: "Tekno Klima",
     legalName: "Tekno Klima S.n.c. di Akshija Ahmed & C.",
+    whatsappNumber: "393464205357",
     payoffPrimary: "We power your comfort",
     payoffSecondary: "Reliability you breathe every day.",
     phone: "346 420 5357",
     phoneHref: "tel:+393464205357",
     email: "info@teknoklima.bz.it",
     emailHref: "mailto:info@teknoklima.bz.it",
-    address: "Via Toni Ebner 9, 39100 Bolzano (BZ), Italy",
-    instagram: "@teknoklima.bz",
-    instagramHref: "https://www.instagram.com/teknoklima.bz",
+    address: "Viale Druso 107, 39100 Bolzano (BZ), Italy",
+    instagram: "@teknoklima.bz.it",
+    instagramHref: "https://www.instagram.com/teknoklima.bz.it",
     vat: "VAT 03281740211",
     vatNumber: "03281740211",
+    rea: "BZ-247012",
+    pec: "teknoklimasnc@pec.it",
     city: "Bolzano",
     region: "South Tyrol",
+  },
+
+  a11y: {
+    skipToContent: "Skip to content",
+    homeLink: "Tekno Klima — Home",
+    mainNav: "Main navigation",
+    mobileNav: "Mobile navigation",
+    openMenu: "Open menu",
+    closeMenu: "Close menu",
+    langSwitcher: "Choose language",
+    breadcrumb: "Breadcrumb",
+  },
+
+  faq: {
+    label: "Frequently asked questions",
+    title: { pre: "The questions we get ", highlight: "most often" },
+    items: [
+      {
+        q: "How much does it cost to install air conditioning in Bolzano?",
+        a: "The cost depends on the type of system, the number of units and the characteristics of the property. That is exactly why the site survey and the quote are free and without obligation: we come and look at the space, assess the most suitable solution and give you a clear quote with no hidden costs.",
+      },
+      {
+        q: "Which areas do you cover?",
+        a: "We work in Bolzano and throughout South Tyrol, for homes, offices and businesses.",
+      },
+      {
+        q: "What is the difference between split, multi-split and ducted systems?",
+        a: "A split system serves a single room with one indoor unit. A multi-split connects several indoor units to a single outdoor unit, and is the usual choice for cooling several rooms. A ducted system distributes air through ducts in the ceiling void: only the grilles are visible, which makes it the best solution when appearance matters.",
+      },
+      {
+        q: "Are you certified to handle refrigerant gases?",
+        a: "Yes. We hold F-Gas certification, which is legally required to install and maintain systems containing fluorinated gases. We are also an official Mitsubishi Heavy Industries service centre.",
+      },
+      {
+        q: "How often should an air conditioner be serviced?",
+        a: "As a general rule, once a year, ideally before the season of heaviest use. Regular cleaning of the filters and heat exchanger keeps the air healthy, reduces consumption and extends the life of the system.",
+      },
+      {
+        q: "Do you service systems installed by someone else?",
+        a: "Yes, we handle maintenance, cleaning, sanitisation and repair on systems we did not install. Get in touch with the make and model and we will tell you how we can help.",
+      },
+      {
+        q: "Is the site survey really free?",
+        a: "Yes. Site survey, consultation and quote are free and without obligation, in Bolzano and throughout South Tyrol.",
+      },
+    ],
   },
 
   nav: [
@@ -130,13 +179,6 @@ export const en: Content = {
     ],
   },
 
-  stats: [
-    { value: 250, suffix: "+", label: "Systems installed" },
-    { value: 100, suffix: "%", label: "Satisfied clients" },
-    { value: 24, suffix: "h", label: "Average response time" },
-    { value: 100, suffix: "%", label: "Free site surveys" },
-  ],
-
   reviews: {
     label: "Reviews",
     title: { pre: "What our ", highlight: "clients", post: " say" },
@@ -189,7 +231,7 @@ export const en: Content = {
     whereLabel: "Where we work",
     whereTitle: "Bolzano and all of South Tyrol",
     whereText:
-      "Based at Via Toni Ebner 9, 39100 Bolzano (BZ). Fast, punctual call-outs; free consultations and site surveys.",
+      "Based at Viale Druso 107, 39100 Bolzano (BZ). Fast, punctual call-outs; free consultations and site surveys.",
     valuesLabel: "Our values",
     valuesTitle: "The values that guide everything we do",
     values: [
@@ -229,19 +271,47 @@ export const en: Content = {
     heroText:
       "Free consultations and site surveys in Bolzano and throughout South Tyrol. Write or call us: we reply fast.",
     dataLabel: "Contact details",
-    form: {
-      aria: "Request a quote",
-      name: "Full name",
-      email: "Email",
-      phone: "Phone",
-      message: "Tell us what you need",
-      submit: "Send request",
-      privacy: "By sending, you consent to your data being used to answer your request.",
-      success: "Request ready! Your email client will open to send it.",
-      subjectPrefix: "Quote request",
+    companyLabel: "Registered name",
+    vatLabel: "VAT no.",
+    reaLabel: "REA",
+    whatsapp: {
+      label: "The fastest way",
+      title: "Message us on WhatsApp",
+      text: "Tell us what you need: a photo of the system or a couple of lines is enough for us to help. You will get a clear quote, with no obligation.",
+      cta: "Open the chat",
+      topicsLabel: "Or start from here",
+      topics: [
+        {
+          label: "Quote for a new system",
+          message:
+            "Hello, I would like a quote for the installation of an air conditioning system.",
+        },
+        {
+          label: "Service or repair",
+          message:
+            "Hello, I need assistance with an air conditioning system that is already installed.",
+        },
+        {
+          label: "Maintenance and sanitisation",
+          message:
+            "Hello, I would like information about maintenance and sanitisation for my system.",
+        },
+      ],
+      note: "Write any time: we reply during working hours, usually the same day.",
+      altLabel: "Prefer another channel?",
+      privacyNote:
+        "When you write to us, the details you share are used only to answer your request. See the",
     },
-    mapsEmbed: "https://www.google.com/maps?q=Via+Toni+Ebner+9,+39100+Bolzano+BZ&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Via+Toni+Ebner+9+39100+Bolzano",
+    mapsEmbed: "https://www.google.com/maps?q=Viale+Druso+107,+39100+Bolzano+BZ&output=embed",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=Viale+Druso+107+39100+Bolzano",
+    map: {
+      title: "Where we are",
+      notice:
+        "The map is provided by Google Maps. By loading it you agree that your IP address is communicated to Google, which may set its own cookies.",
+      load: "Load the map",
+      openExternal: "Open in Google Maps",
+      frameTitle: "Map of the Tekno Klima premises",
+    },
   },
 
   footer: {
@@ -254,33 +324,41 @@ export const en: Content = {
     contactsLabel: "Contact",
   },
 
+  notFound: {
+    label: "Error 404",
+    title: "This page does not exist",
+    text: "The address you opened does not match any page on this site. It may have been moved or mistyped.",
+    cta: "Back to the home page",
+  },
+
   preloaderTagline: "We power your comfort",
 
+  /* See the note in it.ts: titles under ~45 characters, descriptions under 160. */
   meta: {
     home: {
-      title: "Tekno Klima — Air conditioning in Bolzano",
+      title: "Tekno Klima — Air conditioning, Bolzano",
       description:
-        "We power your comfort: air conditioning installation and service in Bolzano and South Tyrol. Official Mitsubishi Heavy Industries service centre, F-Gas certified technicians.",
+        "Air conditioning installation and service in Bolzano and South Tyrol. Official Mitsubishi Heavy Industries service centre, F-Gas certified technicians.",
     },
     climatizzazione: {
-      title: "Air Conditioning — Installation in Bolzano",
+      title: "Air conditioning installation, Bolzano",
       description:
-        "Air conditioner installation in Bolzano: split, multi-split and ducted systems. Free site survey, F-Gas certified technicians, fast service in South Tyrol.",
+        "Split, multi-split and ducted systems in Bolzano. Free site survey and quote, F-Gas certified technicians, fast service across South Tyrol.",
     },
     galleria: {
-      title: "Gallery — Air conditioning installed in Bolzano",
+      title: "Gallery: our work in Bolzano",
       description:
         "Our work: air conditioning systems installed in Bolzano and South Tyrol by Tekno Klima.",
     },
     chiSiamo: {
-      title: "About Us — Tekno Klima, air conditioning in Bolzano",
+      title: "About us: air conditioning, Bolzano",
       description:
-        "Tekno Klima: a young, dynamic Bolzano company specialised in air conditioning. Official Mitsubishi Heavy Industries service centre. Integrity, transparency, energy efficiency.",
+        "A Bolzano company specialised in air conditioning and an official Mitsubishi Heavy Industries service centre. Integrity, transparency, efficiency.",
     },
     contatti: {
-      title: "Contact — Request a quote in Bolzano",
+      title: "Contact and quotes in Bolzano",
       description:
-        "Contact Tekno Klima in Bolzano: free quotes and site surveys for air conditioning. Via Toni Ebner 9, tel. +39 346 420 5357.",
+        "Contact Tekno Klima in Bolzano: free quotes and site surveys for air conditioning. Viale Druso 107, tel. +39 346 420 5357.",
     },
   },
 };

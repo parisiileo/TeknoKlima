@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap, prefersReducedMotion } from "@/lib/animations/gsap-config";
+import { useFocusTrap } from "@/lib/a11y";
 import type { Content, GalleryItem } from "@/content";
 
 /**
@@ -36,6 +37,14 @@ export function GalleryGrid({ t }: { t: Content }) {
     });
     return () => ctx.revert();
   }, [filter]);
+
+  /*
+   * Focus confinato nel dialogo e restituito alla tile che l'ha aperto.
+   * Va dichiarato PRIMA dell'effetto qui sotto, che sposta il focus sul
+   * pulsante di chiusura: l'hook deve fare in tempo a memorizzare da dove
+   * il focus era partito.
+   */
+  useFocusTrap(lightboxRef, active !== null);
 
   /* Lightbox: apertura animata + gestione focus/Escape */
   useEffect(() => {

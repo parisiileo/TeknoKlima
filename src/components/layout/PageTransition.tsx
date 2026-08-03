@@ -96,7 +96,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         className="fixed inset-0 z-[80] hidden bg-deep will-change-transform"
       >
         <div className="flex h-full items-center justify-center">
-          <span className="tech-label text-white/30">Tekno Klima</span>
+          <span className="tech-label text-white/60">Tekno Klima</span>
         </div>
       </div>
       {children}

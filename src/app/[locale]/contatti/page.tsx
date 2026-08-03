@@ -1,33 +1,44 @@
 import type { Metadata } from "next";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Reveal } from "@/components/ui/Reveal";
-import { ContactForm } from "@/components/contact/ContactForm";
-import { getContent, isLocale, locales, defaultLocale } from "@/content";
+import { WhatsAppPanel } from "@/components/contact/WhatsAppPanel";
+import { MapEmbed } from "@/components/contact/MapEmbed";
+import { getLegal, legalSlugs } from "@/content/legal";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { getContent, isLocale, defaultLocale, localeHref } from "@/content";
+import { pageMetadata } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, buildGraph, crumbsFor, webPageSchema } from "@/lib/schema";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = getContent(isLocale(locale) ? locale : defaultLocale);
-  return {
-    title: t.meta.contatti.title,
-    description: t.meta.contatti.description,
-    alternates: {
-      canonical: `/${locale}/contatti`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}/contatti`])),
-    },
-  };
+  const active = isLocale(locale) ? locale : defaultLocale;
+  return pageMetadata({ locale: active, path: "/contatti", meta: getContent(active).meta.contatti });
 }
 
 export default async function ContattiPage({ params }: PageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) return null;
   const t = getContent(locale);
+  const legal = getLegal(locale);
+  const privacyHref = localeHref(locale, `/${legalSlugs.privacy}`);
+  const cookieHref = localeHref(locale, `/${legalSlugs.cookie}`);
+
+  const url = absoluteUrl(locale, "/contatti");
+  const crumbs = crumbsFor(t, "/contatti");
+  const graph = buildGraph(
+    webPageSchema(locale, url, t.meta.contatti, true),
+    breadcrumbSchema(locale, url, crumbs)
+  );
 
   return (
     <section className="section-y pt-40 md:pt-48">
+      <JsonLd data={graph} />
       <div className="container-tk">
         <div className="flex flex-col gap-5">
+          <Breadcrumbs locale={locale} t={t} crumbs={crumbs} />
           <SectionLabel num="—">{t.contact.heroLabel}</SectionLabel>
           <Reveal as="h1" className="font-display max-w-3xl text-[clamp(2.4rem,6vw,5rem)] font-semibold leading-[1.05] tracking-tight text-deep">
             {t.contact.heroTitle}
@@ -39,7 +50,10 @@ export default async function ContattiPage({ params }: PageProps) {
 
         <div className="mt-14 grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
           <Reveal delay={0.15}>
-            <ContactForm t={t} />
+            <WhatsAppPanel
+              t={t}
+              privacyPolicy={{ href: privacyHref, label: legal.labels.privacy }}
+            />
           </Reveal>
 
           <Reveal delay={0.25}>
@@ -70,24 +84,39 @@ export default async function ContattiPage({ params }: PageProps) {
                   </li>
                 </ul>
 
+                {/* `text-steel/70` stava a 3.15:1 sul fondo ice: sotto la
+                    soglia AA. Il grigio pieno arriva a 6:1 e la gerarchia
+                    resta leggibile grazie al peso, non all'opacità. */}
                 <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 border-t border-frost-deep/60 pt-5 text-sm">
-                  <dt className="text-steel/70">Ragione sociale</dt>
+                  <dt className="font-medium text-steel">{t.contact.companyLabel}</dt>
                   <dd className="text-steel">{t.site.legalName}</dd>
-                  <dt className="text-steel/70">P.IVA</dt>
+                  <dt className="font-medium text-steel">{t.contact.vatLabel}</dt>
                   <dd className="text-steel">{t.site.vatNumber}</dd>
+                  {t.site.rea && (
+                    <>
+                      <dt className="font-medium text-steel">{t.contact.reaLabel}</dt>
+                      <dd className="text-steel">{t.site.rea}</dd>
+                    </>
+                  )}
+                  {t.site.pec && (
+                    <>
+                      {/* "PEC" resta invariato: è la denominazione di legge
+                          italiana, non si traduce. */}
+                      <dt className="font-medium text-steel">PEC</dt>
+                      <dd>
+                        <a
+                          href={`mailto:${t.site.pec}`}
+                          className="text-steel transition-colors hover:text-cyan-deep"
+                        >
+                          {t.site.pec}
+                        </a>
+                      </dd>
+                    </>
+                  )}
                 </dl>
               </div>
 
-              <div className="overflow-hidden rounded-[var(--radius-card)] border border-frost-deep/60">
-                <iframe
-                  src={t.contact.mapsEmbed}
-                  title={`${t.site.name} — ${t.site.address}`}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  allowFullScreen
-                  className="h-[22rem] w-full border-0"
-                />
-              </div>
+              <MapEmbed t={t} cookiePolicy={{ href: cookieHref, label: legal.labels.cookie }} />
             </div>
           </Reveal>
         </div>

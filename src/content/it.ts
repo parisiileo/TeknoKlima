@@ -5,19 +5,68 @@ export const it: Content = {
   site: {
     name: "Tekno Klima",
     legalName: "Tekno Klima S.n.c. di Akshija Ahmed & C.",
+    whatsappNumber: "393464205357",
     payoffPrimary: "Diamo energia al tuo comfort",
     payoffSecondary: "Affidabilità che respiri ogni giorno.",
     phone: "346 420 5357",
     phoneHref: "tel:+393464205357",
     email: "info@teknoklima.bz.it",
     emailHref: "mailto:info@teknoklima.bz.it",
-    address: "Via Toni Ebner 9, 39100 Bolzano (BZ)",
-    instagram: "@teknoklima.bz",
-    instagramHref: "https://www.instagram.com/teknoklima.bz",
+    address: "Viale Druso 107, 39100 Bolzano (BZ)",
+    instagram: "@teknoklima.bz.it",
+    instagramHref: "https://www.instagram.com/teknoklima.bz.it",
     vat: "P.IVA 03281740211",
     vatNumber: "03281740211",
+    rea: "BZ-247012",
+    pec: "teknoklimasnc@pec.it",
     city: "Bolzano",
     region: "Alto Adige",
+  },
+
+  a11y: {
+    skipToContent: "Vai al contenuto",
+    homeLink: "Tekno Klima — Home",
+    mainNav: "Navigazione principale",
+    mobileNav: "Navigazione mobile",
+    openMenu: "Apri menu",
+    closeMenu: "Chiudi menu",
+    langSwitcher: "Scegli la lingua",
+    breadcrumb: "Percorso di navigazione",
+  },
+
+  faq: {
+    label: "Domande frequenti",
+    title: { pre: "Le domande che ci fate ", highlight: "più spesso" },
+    items: [
+      {
+        q: "Quanto costa installare un climatizzatore a Bolzano?",
+        a: "Il costo dipende dal tipo di impianto, dal numero di unità e dalle caratteristiche dell'immobile. Per questo il sopralluogo e il preventivo sono gratuiti e senza impegno: veniamo a vedere gli spazi, valutiamo la soluzione più adatta e ti diamo un preventivo chiaro, senza costi nascosti.",
+      },
+      {
+        q: "In quali zone intervenite?",
+        a: "Operiamo a Bolzano e in tutto l'Alto Adige, per abitazioni, uffici e attività commerciali.",
+      },
+      {
+        q: "Che differenza c'è tra split, multisplit e impianto canalizzato?",
+        a: "Uno split serve un solo ambiente con un'unità interna. Un multisplit collega più unità interne a una sola unità esterna, ed è la scelta tipica per climatizzare più stanze. Un impianto canalizzato distribuisce l'aria attraverso canali nel controsoffitto: si vedono solo le griglie, quindi è la soluzione più adatta quando conta l'estetica.",
+      },
+      {
+        q: "Siete certificati per il trattamento dei gas refrigeranti?",
+        a: "Sì. Siamo in possesso della certificazione F-Gas, obbligatoria per legge per chi installa e manutiene impianti contenenti gas fluorurati. Siamo inoltre centro assistenza ufficiale Mitsubishi Heavy Industries.",
+      },
+      {
+        q: "Ogni quanto va fatta la manutenzione di un climatizzatore?",
+        a: "In generale si consiglia una manutenzione all'anno, preferibilmente prima della stagione di utilizzo più intensa. Una pulizia regolare dei filtri e dello scambiatore mantiene l'aria salubre, riduce i consumi e allunga la vita dell'impianto.",
+      },
+      {
+        q: "Fate anche assistenza su impianti installati da altri?",
+        a: "Sì, ci occupiamo di manutenzione, pulizia, sanificazione e riparazione anche su impianti che non abbiamo installato noi. Contattaci indicando marca e modello e ti diciamo come possiamo intervenire.",
+      },
+      {
+        q: "Il sopralluogo è davvero gratuito?",
+        a: "Sì. Sopralluogo, consulenza e preventivo sono gratuiti e senza impegno, a Bolzano e in tutto l'Alto Adige.",
+      },
+    ],
   },
 
   nav: [
@@ -130,13 +179,6 @@ export const it: Content = {
     ],
   },
 
-  stats: [
-    { value: 250, suffix: "+", label: "Impianti installati" },
-    { value: 100, suffix: "%", label: "Clienti soddisfatti" },
-    { value: 24, suffix: "h", label: "Tempo medio di risposta" },
-    { value: 100, suffix: "%", label: "Sopralluoghi gratuiti" },
-  ],
-
   reviews: {
     label: "Recensioni",
     title: { pre: "La parola ai ", highlight: "clienti" },
@@ -189,7 +231,7 @@ export const it: Content = {
     whereLabel: "Dove operiamo",
     whereTitle: "Bolzano e tutto l'Alto Adige",
     whereText:
-      "Sede in Via Toni Ebner 9, 39100 Bolzano (BZ). Interventi veloci e puntuali, consulenza e sopralluoghi gratuiti.",
+      "Sede in Viale Druso 107, 39100 Bolzano (BZ). Interventi veloci e puntuali, consulenza e sopralluoghi gratuiti.",
     valuesLabel: "I nostri valori",
     valuesTitle: "I valori che guidano ogni nostro intervento",
     values: [
@@ -229,19 +271,47 @@ export const it: Content = {
     heroText:
       "Consulenza e sopralluoghi gratuiti a Bolzano e in tutto l'Alto Adige. Scrivici o chiamaci: rispondiamo in fretta.",
     dataLabel: "Dati di contatto",
-    form: {
-      aria: "Richiedi un preventivo",
-      name: "Nome e cognome",
-      email: "Email",
-      phone: "Telefono",
-      message: "Raccontaci di cosa hai bisogno",
-      submit: "Invia richiesta",
-      privacy: "Inviando accetti il trattamento dei dati per rispondere alla tua richiesta.",
-      success: "Richiesta pronta! Si aprirà il tuo client email per l'invio.",
-      subjectPrefix: "Richiesta preventivo",
+    companyLabel: "Ragione sociale",
+    vatLabel: "P.IVA",
+    reaLabel: "REA",
+    whatsapp: {
+      label: "Il modo più rapido",
+      title: "Scrivici su WhatsApp",
+      text: "Raccontaci di cosa hai bisogno: una foto dell'impianto o due righe bastano per capire come aiutarti. Ti rispondiamo con un preventivo chiaro, senza impegno.",
+      cta: "Apri la chat",
+      topicsLabel: "Oppure parti da qui",
+      topics: [
+        {
+          label: "Preventivo per un nuovo impianto",
+          message:
+            "Buongiorno, vorrei un preventivo per l'installazione di un impianto di climatizzazione.",
+        },
+        {
+          label: "Assistenza o riparazione",
+          message:
+            "Buongiorno, avrei bisogno di assistenza su un impianto di climatizzazione già installato.",
+        },
+        {
+          label: "Manutenzione e sanificazione",
+          message:
+            "Buongiorno, vorrei informazioni sulla manutenzione e sanificazione del mio impianto.",
+        },
+      ],
+      note: "Scrivici quando vuoi: ti rispondiamo negli orari di lavoro, di solito in giornata.",
+      altLabel: "Preferisci un altro canale?",
+      privacyNote:
+        "Scrivendoci, i dati che ci comunichi vengono usati solo per rispondere alla tua richiesta. Dettagli nella",
     },
-    mapsEmbed: "https://www.google.com/maps?q=Via+Toni+Ebner+9,+39100+Bolzano+BZ&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Via+Toni+Ebner+9+39100+Bolzano",
+    mapsEmbed: "https://www.google.com/maps?q=Viale+Druso+107,+39100+Bolzano+BZ&output=embed",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=Viale+Druso+107+39100+Bolzano",
+    map: {
+      title: "Dove siamo",
+      notice:
+        "La mappa è fornita da Google Maps. Caricandola accetti che il tuo indirizzo IP venga comunicato a Google, che può installare cookie propri.",
+      load: "Carica la mappa",
+      openExternal: "Apri in Google Maps",
+      frameTitle: "Mappa della sede Tekno Klima",
+    },
   },
 
   footer: {
@@ -256,31 +326,43 @@ export const it: Content = {
 
   preloaderTagline: "Diamo energia al tuo comfort",
 
+  notFound: {
+    label: "Errore 404",
+    title: "Questa pagina non esiste",
+    text: "L'indirizzo che hai aperto non corrisponde a nessuna pagina del sito. Può darsi che sia stato spostato o digitato male.",
+    cta: "Torna alla home",
+  },
+
+  /*
+   * Title tenuti sotto i ~45 caratteri: il template aggiunge " | Tekno Klima"
+   * e Google ne mostra circa 60 in tutto. Description sotto i 160, il punto
+   * oltre il quale lo snippet viene troncato con i puntini.
+   */
   meta: {
     home: {
       title: "Tekno Klima — Climatizzazione a Bolzano",
       description:
-        "Diamo energia al tuo comfort: installazione e assistenza climatizzatori a Bolzano e in Alto Adige. Centro assistenza ufficiale Mitsubishi Heavy Industries, tecnici certificati F-Gas.",
+        "Installazione e assistenza climatizzatori a Bolzano e in Alto Adige. Centro assistenza ufficiale Mitsubishi Heavy Industries, tecnici certificati F-Gas.",
     },
     climatizzazione: {
-      title: "Climatizzazione — Installazione climatizzatori a Bolzano",
+      title: "Installazione climatizzatori a Bolzano",
       description:
-        "Installazione climatizzatori a Bolzano: split, multisplit e impianti canalizzati. Sopralluogo gratuito, tecnici certificati F-Gas, assistenza rapida in Alto Adige.",
+        "Split, multisplit e impianti canalizzati a Bolzano. Sopralluogo e preventivo gratuiti, tecnici certificati F-Gas, assistenza rapida in Alto Adige.",
     },
     galleria: {
-      title: "Galleria lavori — Impianti di climatizzazione a Bolzano",
+      title: "Galleria lavori: impianti a Bolzano",
       description:
         "I nostri lavori: impianti di climatizzazione realizzati a Bolzano e in Alto Adige da Tekno Klima.",
     },
     chiSiamo: {
-      title: "Chi Siamo — Tekno Klima, climatizzazione a Bolzano",
+      title: "Chi siamo: climatizzazione a Bolzano",
       description:
-        "Tekno Klima: azienda giovane e dinamica di Bolzano specializzata in climatizzazione. Centro assistenza ufficiale Mitsubishi Heavy Industries. Integrità, trasparenza, efficienza energetica.",
+        "Azienda di Bolzano specializzata in climatizzazione, centro assistenza ufficiale Mitsubishi Heavy Industries. Integrità, trasparenza, efficienza.",
     },
     contatti: {
-      title: "Contatti — Richiedi un preventivo a Bolzano",
+      title: "Contatti e preventivi a Bolzano",
       description:
-        "Contatta Tekno Klima a Bolzano: preventivi e sopralluoghi gratuiti per impianti di climatizzazione. Via Toni Ebner 9, tel. 346 420 5357.",
+        "Contatta Tekno Klima a Bolzano: preventivi e sopralluoghi gratuiti per impianti di climatizzazione. Viale Druso 107, tel. 346 420 5357.",
     },
   },
 };

@@ -9,11 +9,14 @@ import { TkMark } from "@/components/ui/TkLogo";
  * sinistra, il chevron blu da destra — poi il pannello sale scoprendo la hero,
  * che riprende il discorso mostrando la dicitura "TEKNO KLIMA" per intero.
  *
- * - parte a OGNI caricamento della pagina (nessun gate di sessione)
+ * - parte una volta per sessione: alla decima pagina aperta nella stessa
+ *   visita l'intro non aggiunge nulla e ritarda solo il primo contenuto utile
  * - renderizzata anche lato server: niente lampo di contenuto prima dell'intro
  * - skippabile con click o tasto; saltata con prefers-reduced-motion
  * - senza JS il pannello è nascosto dal <noscript> in fondo al file
  */
+const SESSION_KEY = "tk-intro-seen";
+
 export function Preloader({ tagline }: { tagline: string }) {
   // Visibile già al primo paint (anche in SSR): l'unico modo per non far
   // vedere la pagina prima dell'intro.
@@ -37,9 +40,29 @@ export function Preloader({ tagline }: { tagline: string }) {
       window.dispatchEvent(new Event("tk:preloader-done"));
     };
 
-    if (prefersReducedMotion()) {
+    /*
+     * Già vista in questa sessione (o movimento ridotto): via il pannello
+     * subito, senza timeline. `sessionStorage` e non `localStorage`: chi
+     * torna il giorno dopo rivede l'intro, chi sta navigando il sito no.
+     * In lettura difensiva perché in navigazione privata Safari può alzare
+     * un'eccezione sul solo accesso.
+     */
+    let seen = false;
+    try {
+      seen = sessionStorage.getItem(SESSION_KEY) === "1";
+    } catch {
+      /* storage non disponibile: l'intro parte, è il comportamento di prima */
+    }
+
+    if (seen || prefersReducedMotion()) {
       done();
       return;
+    }
+
+    try {
+      sessionStorage.setItem(SESSION_KEY, "1");
+    } catch {
+      /* niente da fare: al massimo l'intro riparte */
     }
 
     // In home l'intro consegna il testimone allo stage 1 della hero: se il

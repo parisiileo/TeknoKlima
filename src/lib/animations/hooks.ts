@@ -120,35 +120,4 @@ export function useParallax<T extends HTMLElement>(amount = 60) {
   return ref;
 }
 
-/** Contatore animato quando entra in viewport. */
-export function useCounter<T extends HTMLElement>(target: number, options?: { duration?: number }) {
-  const ref = useRef<T>(null);
-
-  useIsoLayoutEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    if (prefersReducedMotion()) {
-      el.textContent = String(target);
-      return;
-    }
-
-    const obj = { v: 0 };
-    const ctx = gsap.context(() => {
-      gsap.to(obj, {
-        v: target,
-        duration: options?.duration ?? 2,
-        ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 88%", once: true },
-        onUpdate: () => {
-          el.textContent = String(Math.round(obj.v));
-        },
-      });
-    });
-    return () => ctx.revert();
-  }, [target, options?.duration]);
-
-  return ref;
-}
-
 export { gsap, ScrollTrigger };

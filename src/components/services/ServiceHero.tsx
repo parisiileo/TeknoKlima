@@ -1,5 +1,7 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import type { ServiceContent } from "@/content";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import type { Content, Locale, ServiceContent } from "@/content";
+import type { Crumb } from "@/lib/schema";
 
 /**
  * Hero di pagina servizio: sfondo deep, titolo con mask-reveal, entrata animata.
@@ -10,7 +12,9 @@ import type { ServiceContent } from "@/content";
  * ogni mount e termina sempre sull'ultimo keyframe → titolo sempre visibile.
  * Niente JS, niente ScrollTrigger: l'hero è già in vista al caricamento.
  */
-export function ServiceHero({ service }: { service: ServiceContent }) {
+type Props = { service: ServiceContent; locale: Locale; t: Content; crumbs: Crumb[] };
+
+export function ServiceHero({ service, locale, t, crumbs }: Props) {
   return (
     <section className="relative overflow-hidden bg-deep pb-20 pt-40 text-white md:pb-28 md:pt-48">
       <div
@@ -18,6 +22,9 @@ export function ServiceHero({ service }: { service: ServiceContent }) {
         className="absolute inset-0 bg-[radial-gradient(55%_60%_at_80%_10%,rgba(31,168,220,0.18),transparent),radial-gradient(40%_40%_at_10%_90%,rgba(255,122,61,0.1),transparent)]"
       />
       <div className="container-tk relative">
+        <div className="sh-fade mb-6">
+          <Breadcrumbs locale={locale} t={t} crumbs={crumbs} light />
+        </div>
         <div className="sh-fade sh-fade-1">
           <SectionLabel num={service.num} light>
             {service.title}

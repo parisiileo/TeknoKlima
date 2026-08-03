@@ -1,13 +1,22 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import localFont from "next/font/local";
 import { JetBrains_Mono } from "next/font/google";
 import { LenisProvider } from "@/lib/lenis";
 import { Preloader } from "@/components/layout/Preloader";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { SkipLink } from "@/components/layout/SkipLink";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { getContent, isLocale, locales, type Locale } from "@/content";
+import { WhatsAppFab } from "@/components/contact/WhatsAppFab";
+import { CookieBanner } from "@/components/cookie/CookieBanner";
+import { ConsentProvider } from "@/lib/consent";
+import { getLegal, legalSlugs } from "@/content/legal";
+import { localeHref } from "@/content";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { rootMetadata } from "@/lib/seo";
+import { buildGraph, logoSchema, organizationSchema, websiteSchema } from "@/lib/schema";
+import { getContent, isLocale, locales } from "@/content";
 import "../globals.css";
 
 const clash = localFont({
@@ -33,12 +42,15 @@ const jetbrains = JetBrains_Mono({
   display: "swap",
 });
 
-const BASE = "https://www.teknoklima.bz.it";
-const OG_LOCALES: Record<Locale, string> = { it: "it_IT", de: "de_DE", en: "en_US" };
-
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
+
+/** Colore della barra di sistema su mobile: il deep del marchio. */
+export const viewport: Viewport = {
+  themeColor: "#0b1f33",
+  colorScheme: "light",
+};
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -52,69 +64,66 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   if (!isLocale(locale)) return {};
-  const t = getContent(locale);
 
-  return {
-    metadataBase: new URL(BASE),
-    title: {
-      default: t.meta.home.title,
-      template: `%s | Tekno Klima ${t.site.city}`,
-    },
-    description: t.meta.home.description,
-    openGraph: {
-      type: "website",
-      locale: OG_LOCALES[locale],
-      siteName: t.site.name,
-      title: t.meta.home.title,
-      description: t.meta.home.description,
-    },
-  };
+  /* Solo i metadati validi per l'intero sito. Titolo, descrizione, canonical,
+     hreflang, OG e Twitter card sono dichiarati da OGNI pagina tramite
+     `pageMetadata`: `openGraph` non si eredita per campi, e lasciarlo qui
+     faceva ereditare a tutte le pagine l'og:title della home. */
+  return rootMetadata(locale);
 }
 
 export default async function LocaleLayout({ children, params }: LayoutProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const t = getContent(locale);
+  const legal = getLegal(locale);
 
-  /** Dati strutturati LocalBusiness per la SEO locale. */
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "HVACBusiness",
-    name: t.site.name,
-    legalName: t.site.legalName,
-    slogan: t.site.payoffPrimary,
-    telephone: "+39 346 420 5357",
-    email: t.site.email,
-    url: `${BASE}/${locale}`,
-    vatID: "IT03281740211",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "Via Toni Ebner 9",
-      postalCode: "39100",
-      addressLocality: "Bolzano",
-      addressRegion: "Trentino-Alto Adige",
-      addressCountry: "IT",
-    },
-    areaServed: "Bolzano / Bozen — Alto Adige / Südtirol",
-    brand: "Mitsubishi Heavy Industries",
-    sameAs: [t.site.instagramHref],
-  };
+  /* Entità globali del grafo: l'azienda e il sito. Ogni pagina vi aggancia
+     la propria `WebPage` e il proprio `BreadcrumbList` tramite @id. */
+  const graph = buildGraph(
+    organizationSchema(locale),
+    websiteSchema(locale),
+    logoSchema(locale)
+  );
 
   return (
     <html lang={locale} className={`${clash.variable} ${satoshi.variable} ${jetbrains.variable}`}>
       <body className="antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
-        <LenisProvider>
-          <Preloader tagline={t.preloaderTagline} />
-          <PageTransition>
-            <Header locale={locale} t={t} />
-            <main id="main">{children}</main>
-            <Footer locale={locale} t={t} />
-          </PageTransition>
-        </LenisProvider>
+        <JsonLd data={graph} />
+        <SkipLink label={t.a11y.skipToContent} />
+        {/* Il provider avvolge tutto: banner, footer e mappa devono leggere
+            la stessa scelta di consenso. */}
+        <ConsentProvider>
+          <LenisProvider>
+            <Preloader tagline={t.preloaderTagline} />
+            <PageTransition>
+              <Header locale={locale} t={t} />
+              {/* `tabIndex={-1}`: senza, il salto dello skip link non sposta
+                  davvero il focus e il Tab successivo riparte dall'header. */}
+              <main id="main" tabIndex={-1}>
+                {children}
+              </main>
+              <Footer locale={locale} t={t} />
+            </PageTransition>
+            {/* Fuori da PageTransition: quell'overlay anima uno `scaleY`, e un
+                `transform` su un antenato farebbe collassare il `position:
+                fixed` degli elementi sul contenitore invece che sul viewport. */}
+            <WhatsAppFab number={t.site.whatsappNumber} label={t.contact.whatsapp.title} />
+            <CookieBanner
+              c={legal.cookieBanner}
+              links={{
+                cookie: {
+                  href: localeHref(locale, `/${legalSlugs.cookie}`),
+                  label: legal.labels.cookie,
+                },
+                privacy: {
+                  href: localeHref(locale, `/${legalSlugs.privacy}`),
+                  label: legal.labels.privacy,
+                },
+              }}
+            />
+          </LenisProvider>
+        </ConsentProvider>
       </body>
     </html>
   );

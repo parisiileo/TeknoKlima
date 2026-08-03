@@ -41,6 +41,11 @@ export type Content = {
     name: string;
     /** Ragione sociale completa (dati camerali) */
     legalName: string;
+    /**
+     * Numero WhatsApp in formato internazionale senza "+" né spazi, come
+     * richiesto da wa.me (es. "393464205357").
+     */
+    whatsappNumber: string;
     payoffPrimary: string;
     payoffSecondary: string;
     phone: string;
@@ -54,9 +59,47 @@ export type Content = {
     vat: string;
     /** Solo il numero di partita IVA, senza etichetta */
     vatNumber: string;
+    /**
+     * Iscrizione al Registro Imprese / REA (art. 2250 c.c.), es. "REA BZ-123456".
+     * Opzionale finché il dato camerale non è confermato: se assente non viene
+     * reso, così il footer non mostra mai un segnaposto.
+     */
+    rea?: string;
+    /** Indirizzo PEC, se disponibile. Opzionale come `rea`. */
+    pec?: string;
     city: string;
     region: string;
   };
+  /**
+   * Stringhe destinate alle tecnologie assistive. Erano hardcoded in italiano
+   * nei componenti: su /de e /en uno screen reader leggeva la lingua sbagliata.
+   */
+  a11y: {
+    skipToContent: string;
+    homeLink: string;
+    mainNav: string;
+    mobileNav: string;
+    openMenu: string;
+    closeMenu: string;
+    langSwitcher: string;
+    breadcrumb: string;
+  };
+
+  /**
+   * FAQ della pagina servizio. Doppio scopo: rispondono alle domande che i
+   * clienti fanno davvero al telefono e alimentano il markup `FAQPage`,
+   * l'unico rich result ancora espanso da Google per questo tipo di sito.
+   *
+   * Le risposte non introducono impegni nuovi: riformulano solo quanto già
+   * dichiarato altrove nel sito (sopralluogo gratuito, certificazioni,
+   * zona servita, tipi di impianto).
+   */
+  faq: {
+    label: string;
+    title: Highlight;
+    items: { q: string; a: string }[];
+  };
+
   /** href senza prefisso locale — prefissato nei componenti */
   nav: { label: string; href: string }[];
   cta: { quote: string; call: string; discover: string };
@@ -97,9 +140,6 @@ export type Content = {
     title: Highlight;
     items: { title: string; subtitle: string; text: string }[];
   };
-
-  /** [DA CONFERMARE] — numeri placeholder da validare col cliente */
-  stats: { value: number; suffix: string; label: string }[];
 
   /** Recensioni reali Google — 5 stelle. */
   reviews: {
@@ -148,19 +188,61 @@ export type Content = {
     heroTitle: string;
     heroText: string;
     dataLabel: string;
-    form: {
-      aria: string;
-      name: string;
-      email: string;
-      phone: string;
-      message: string;
-      submit: string;
-      privacy: string;
-      success: string;
-      subjectPrefix: string;
+    /** Etichette della scheda dati camerali (erano hardcoded in italiano) */
+    companyLabel: string;
+    vatLabel: string;
+    reaLabel: string;
+
+    /**
+     * Canale WhatsApp, che ha sostituito il modulo di contatto.
+     *
+     * Per un'attività locale converte molto meglio di un form — si scrive dal
+     * telefono in pochi secondi e il numero del cliente resta nella chat —
+     * e non comporta alcun trattamento di dati da parte del sito: è un
+     * semplice link in uscita, esattamente come quello a Instagram.
+     */
+    whatsapp: {
+      label: string;
+      title: string;
+      text: string;
+      /** Etichetta del pulsante principale */
+      cta: string;
+      /** Introduce le scorciatoie per argomento */
+      topicsLabel: string;
+      /**
+       * Scorciatoie: ognuna apre WhatsApp con un messaggio già scritto, così
+       * il cliente non deve pensare a come iniziare.
+       */
+      topics: { label: string; message: string }[];
+      /** Nota su orari/tempi di risposta */
+      note: string;
+      /** Introduce i canali alternativi (telefono, email) */
+      altLabel: string;
+      /**
+       * Informativa resa prima che l'utente scriva (art. 13 GDPR). Il link
+       * alla privacy policy viene aggiunto in coda dal componente.
+       */
+      privacyNote: string;
     };
     mapsEmbed: string;
     mapsLink: string;
+    /**
+     * Mappa a caricamento su richiesta: l'iframe di Google installa cookie di
+     * terze parti, quindi non può partire da solo (Linee guida cookie del
+     * Garante). Queste stringhe compongono il segnaposto che lo sostituisce.
+     */
+    map: {
+      /** Titolo del segnaposto, es. "Dove siamo" */
+      title: string;
+      /** Avviso sul trasferimento dati a Google */
+      notice: string;
+      /** Etichetta del pulsante che carica l'iframe */
+      load: string;
+      /** Link alternativo che apre Google Maps in una nuova scheda */
+      openExternal: string;
+      /** Titolo dell'iframe una volta caricato (per screen reader) */
+      frameTitle: string;
+    };
   };
 
   footer: {
@@ -173,6 +255,8 @@ export type Content = {
   };
 
   preloaderTagline: string;
+
+  notFound: { label: string; title: string; text: string; cta: string };
 
   meta: {
     home: PageMeta;

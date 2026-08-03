@@ -5,16 +5,17 @@ import { HighlightTitle } from "@/components/ui/HighlightTitle";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { ServiceHero } from "./ServiceHero";
 import { localeHref, type Content, type Locale, type ServiceContent } from "@/content";
+import type { Crumb } from "@/lib/schema";
 
-type Props = { locale: Locale; t: Content; service: ServiceContent };
+type Props = { locale: Locale; t: Content; service: ServiceContent; crumbs: Crumb[] };
 
-/** Template completo di pagina servizio, riusato dalle 3 route. */
-export function ServicePage({ locale, t, service }: Props) {
+/** Template completo di pagina servizio, riusato dalle route servizio. */
+export function ServicePage({ locale, t, service, crumbs }: Props) {
   const others = t.services.filter((s) => s.slug !== service.slug);
 
   return (
     <>
-      <ServiceHero service={service} />
+      <ServiceHero service={service} locale={locale} t={t} crumbs={crumbs} />
 
       {/* Cosa comprende */}
       <section className="section-y">

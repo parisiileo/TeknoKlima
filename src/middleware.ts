@@ -36,6 +36,14 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  // Escludi asset, API e file statici (con estensione)
-  matcher: ["/((?!_next|api|.*\\..*).*)"],
+  /*
+   * Escludi asset, API e file statici (quelli con estensione).
+   *
+   * `apple-icon` va escluso a mano: è una route di metadati generata da Next
+   * e, non avendo estensione, cadeva nel matcher e veniva redirezionata a
+   * `/it/apple-icon` — cioè su un 404. Stesso motivo per `opengraph-image`
+   * e `icon`, che pur essendo oggi sotto `/[locale]` o con estensione
+   * potrebbero cambiare forma.
+   */
+  matcher: ["/((?!_next|api|apple-icon|icon|opengraph-image|manifest|.*\\..*).*)"],
 };

@@ -3,22 +3,18 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Reveal, StaggerReveal } from "@/components/ui/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { Certifications } from "@/components/home/Certifications";
-import { Stats } from "@/components/home/Stats";
-import { getContent, isLocale, locales, defaultLocale, localeHref } from "@/content";
+import { getContent, isLocale, defaultLocale, localeHref } from "@/content";
+import { pageMetadata } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, buildGraph, crumbsFor, webPageSchema } from "@/lib/schema";
+import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 type PageProps = { params: Promise<{ locale: string }> };
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
-  const t = getContent(isLocale(locale) ? locale : defaultLocale);
-  return {
-    title: t.meta.chiSiamo.title,
-    description: t.meta.chiSiamo.description,
-    alternates: {
-      canonical: `/${locale}/chi-siamo`,
-      languages: Object.fromEntries(locales.map((l) => [l, `/${l}/chi-siamo`])),
-    },
-  };
+  const active = isLocale(locale) ? locale : defaultLocale;
+  return pageMetadata({ locale: active, path: "/chi-siamo", meta: getContent(active).meta.chiSiamo });
 }
 
 export default async function ChiSiamoPage({ params }: PageProps) {
@@ -26,12 +22,21 @@ export default async function ChiSiamoPage({ params }: PageProps) {
   if (!isLocale(locale)) return null;
   const t = getContent(locale);
 
+  const url = absoluteUrl(locale, "/chi-siamo");
+  const crumbs = crumbsFor(t, "/chi-siamo");
+  const graph = buildGraph(
+    webPageSchema(locale, url, t.meta.chiSiamo, true),
+    breadcrumbSchema(locale, url, crumbs)
+  );
+
   return (
     <>
+      <JsonLd data={graph} />
       {/* Hero + storia */}
       <section className="section-y pt-40 md:pt-48">
         <div className="container-tk">
           <div className="flex flex-col gap-5">
+            <Breadcrumbs locale={locale} t={t} crumbs={crumbs} />
             <SectionLabel num="—">{t.about.heroLabel}</SectionLabel>
             <Reveal as="h1" className="font-display max-w-4xl text-[clamp(2.4rem,6vw,5rem)] font-semibold leading-[1.05] tracking-tight text-deep">
               {t.about.heroTitle}
@@ -83,7 +88,6 @@ export default async function ChiSiamoPage({ params }: PageProps) {
       </section>
 
       <Certifications t={t} />
-      <Stats t={t} />
     </>
   );
 }

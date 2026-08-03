@@ -174,7 +174,7 @@ export function Hero({ locale, t }: Props) {
           className="hero-fadeop-anim absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex"
           style={{ animationDelay: "0.75s" }}
         >
-          <span className="tech-label text-steel/70">{t.hero.scroll}</span>
+          <span className="tech-label text-steel">{t.hero.scroll}</span>
           <span className="h-10 w-px animate-pulse bg-gradient-to-b from-cyan to-transparent" />
         </div>
       </div>

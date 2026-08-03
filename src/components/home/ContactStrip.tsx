@@ -2,6 +2,7 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Reveal, StaggerReveal } from "@/components/ui/Reveal";
 import { HighlightTitle } from "@/components/ui/HighlightTitle";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { WhatsAppGlyph, waLink } from "@/components/ui/WhatsAppGlyph";
 import { localeHref, type Content, type Locale } from "@/content";
 
 type Props = { locale: Locale; t: Content };
@@ -25,8 +26,23 @@ export function ContactStrip({ locale, t }: Props) {
           <Reveal as="p" delay={0.1} className="max-w-xl leading-relaxed text-steel">
             {t.contactStrip.text}
           </Reveal>
-          <Reveal delay={0.15} className="mt-2">
+          <Reveal delay={0.15} className="mt-2 flex flex-wrap items-center gap-x-8 gap-y-4">
             <MagneticButton href={localeHref(locale, "/contatti")}>{t.cta.quote}</MagneticButton>
+            {/* Scorciatoia diretta: chi è pronto a scrivere non deve passare
+                dalla pagina Contatti. Link in uscita, nessun dato trasmesso
+                finché non viene aperto. */}
+            <a
+              href={waLink(t.site.whatsappNumber)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2.5 font-medium text-deep transition-colors hover:text-cyan-deep"
+            >
+              <WhatsAppGlyph className="h-5 w-5 text-[#25D366]" />
+              {t.contact.whatsapp.title}
+              <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </a>
           </Reveal>
         </div>
 

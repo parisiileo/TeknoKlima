@@ -7,14 +7,15 @@ import { AnimatedLink } from "@/components/ui/AnimatedLink";
 import { LangSwitcher } from "./LangSwitcher";
 import { TkLockup } from "@/components/ui/TkLogo";
 import { gsap, prefersReducedMotion } from "@/lib/animations/gsap-config";
+import { useFocusTrap } from "@/lib/a11y";
 import { localeHref, type Content, type Locale } from "@/content";
 
 type Props = { locale: Locale; t: Content };
 
 /** Marchio ufficiale; su hero scura o menu aperto passa alla variante chiara. */
-function Logo({ locale, light = false }: { locale: Locale; light?: boolean }) {
+function Logo({ locale, light = false, label }: { locale: Locale; light?: boolean; label: string }) {
   return (
-    <Link href={`/${locale}`} aria-label="Tekno Klima — Home" className="block">
+    <Link href={`/${locale}`} aria-label={label} className="block">
       <TkLockup
         variant={light ? "light" : "brand"}
         title="Tekno Klima"
@@ -33,6 +34,9 @@ export function Header({ locale, t }: Props) {
   const pathname = usePathname();
   const menuRef = useRef<HTMLDivElement>(null);
 
+  /* Menu aperto = overlay a tutto schermo: il focus non deve uscirne. */
+  useFocusTrap(menuRef, open);
+
   /* Testo chiaro finché l'header è trasparente sopra una hero scura */
   const onDark = DARK_HERO_ROUTES.test(pathname) && !scrolled;
 
@@ -48,6 +52,16 @@ export function Header({ locale, t }: Props) {
   useEffect(() => {
     setOpen(false);
   }, [pathname]);
+
+  /* Escape chiude il menu: convenzione attesa da qualunque overlay modale */
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
   /* Animazione apertura menu mobile */
   useEffect(() => {
@@ -77,11 +91,11 @@ export function Header({ locale, t }: Props) {
     >
       <div className="container-tk flex h-[4.5rem] items-center justify-between md:h-20">
         <div className={open ? "relative z-[75]" : ""}>
-          <Logo locale={locale} light={open || onDark} />
+          <Logo locale={locale} light={open || onDark} label={t.a11y.homeLink} />
         </div>
 
         {/* Nav desktop */}
-        <nav aria-label="Navigazione principale" className="hidden items-center gap-6 lg:flex">
+        <nav aria-label={t.a11y.mainNav} className="hidden items-center gap-6 lg:flex">
           {t.nav.slice(1).map((item) => {
             const href = localeHref(locale, item.href);
             return (
@@ -97,7 +111,7 @@ export function Header({ locale, t }: Props) {
               </AnimatedLink>
             );
           })}
-          <LangSwitcher current={locale} light={onDark} />
+          <LangSwitcher current={locale} light={onDark} label={t.a11y.langSwitcher} />
           <Link
             href={localeHref(locale, "/contatti")}
             className={`rounded-full px-5 py-2.5 text-[0.85rem] font-medium transition-colors duration-300 ${
@@ -116,7 +130,7 @@ export function Header({ locale, t }: Props) {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Chiudi menu" : "Apri menu"}
+          aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
           className={`relative z-[75] flex h-11 w-11 flex-col items-center justify-center gap-1.5 lg:hidden ${
             open || onDark ? "text-white" : "text-deep"
           }`}
@@ -135,14 +149,22 @@ export function Header({ locale, t }: Props) {
       </div>
 
       {/* Menu mobile fullscreen */}
+      {/*
+       * `inert` a menu chiuso: con la sola `opacity-0` il pannello resta nel
+       * tab order e su desktop il focus finisce su cinque link invisibili.
+       * `inert` li toglie di mezzo per tastiera e screen reader senza
+       * smontarli, così la transizione di apertura resta fluida.
+       */}
       <div
         ref={menuRef}
         id="mobile-menu"
+        inert={!open}
+        aria-hidden={!open}
         className={`fixed inset-0 z-[72] flex flex-col justify-between overflow-y-auto bg-deep px-6 pb-10 pt-28 transition-opacity duration-300 lg:hidden ${
           open ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <nav aria-label="Navigazione mobile" className="flex flex-col gap-2">
+        <nav aria-label={t.a11y.mobileNav} className="flex flex-col gap-2">
           {t.nav.map((item) => {
             const href = localeHref(locale, item.href);
             return (
@@ -160,7 +182,7 @@ export function Header({ locale, t }: Props) {
           })}
         </nav>
         <div data-menu-item className="mt-8 flex flex-col gap-5">
-          <LangSwitcher current={locale} light />
+          <LangSwitcher current={locale} light label={t.a11y.langSwitcher} />
           <Link
             href={localeHref(locale, "/contatti")}
             className="rounded-full bg-ember px-6 py-4 text-center font-medium text-white"

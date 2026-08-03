@@ -5,19 +5,68 @@ export const de: Content = {
   site: {
     name: "Tekno Klima",
     legalName: "Tekno Klima S.n.c. di Akshija Ahmed & C.",
+    whatsappNumber: "393464205357",
     payoffPrimary: "Wir geben deinem Komfort Energie",
     payoffSecondary: "Zuverlässigkeit, die du jeden Tag atmest.",
     phone: "346 420 5357",
     phoneHref: "tel:+393464205357",
     email: "info@teknoklima.bz.it",
     emailHref: "mailto:info@teknoklima.bz.it",
-    address: "Toni-Ebner-Straße 9, 39100 Bozen (BZ)",
-    instagram: "@teknoklima.bz",
-    instagramHref: "https://www.instagram.com/teknoklima.bz",
+    address: "Drususallee 107, 39100 Bozen (BZ)",
+    instagram: "@teknoklima.bz.it",
+    instagramHref: "https://www.instagram.com/teknoklima.bz.it",
     vat: "MwSt.-Nr. 03281740211",
     vatNumber: "03281740211",
+    rea: "BZ-247012",
+    pec: "teknoklimasnc@pec.it",
     city: "Bozen",
     region: "Südtirol",
+  },
+
+  a11y: {
+    skipToContent: "Zum Inhalt springen",
+    homeLink: "Tekno Klima — Startseite",
+    mainNav: "Hauptnavigation",
+    mobileNav: "Mobile Navigation",
+    openMenu: "Menü öffnen",
+    closeMenu: "Menü schließen",
+    langSwitcher: "Sprache wählen",
+    breadcrumb: "Navigationspfad",
+  },
+
+  faq: {
+    label: "Häufige Fragen",
+    title: { pre: "Die Fragen, die uns ", highlight: "am häufigsten" , post: " gestellt werden" },
+    items: [
+      {
+        q: "Was kostet die Installation einer Klimaanlage in Bozen?",
+        a: "Die Kosten hängen von der Art der Anlage, der Anzahl der Geräte und den Gegebenheiten der Immobilie ab. Genau deshalb sind Besichtigung und Angebot kostenlos und unverbindlich: Wir sehen uns die Räume an, prüfen die passende Lösung und erstellen ein klares Angebot ohne versteckte Kosten.",
+      },
+      {
+        q: "In welchen Gebieten sind Sie tätig?",
+        a: "Wir arbeiten in Bozen und in ganz Südtirol, für Wohnungen, Büros und Geschäfte.",
+      },
+      {
+        q: "Was ist der Unterschied zwischen Split, Multisplit und Kanalgerät?",
+        a: "Ein Splitgerät versorgt einen einzigen Raum mit einer Inneneinheit. Ein Multisplit verbindet mehrere Inneneinheiten mit einer einzigen Außeneinheit und ist die übliche Wahl, um mehrere Räume zu klimatisieren. Eine Kanalanlage verteilt die Luft über Kanäle in der Zwischendecke: Sichtbar sind nur die Gitter, daher ist sie die beste Lösung, wenn die Optik zählt.",
+      },
+      {
+        q: "Sind Sie für den Umgang mit Kältemitteln zertifiziert?",
+        a: "Ja. Wir verfügen über die F-Gas-Zertifizierung, die für Installation und Wartung von Anlagen mit fluorierten Gasen gesetzlich vorgeschrieben ist. Zudem sind wir offizielles Servicezentrum von Mitsubishi Heavy Industries.",
+      },
+      {
+        q: "Wie oft muss eine Klimaanlage gewartet werden?",
+        a: "In der Regel wird eine Wartung pro Jahr empfohlen, am besten vor der Hauptnutzungszeit. Eine regelmäßige Reinigung von Filtern und Wärmetauscher hält die Luft gesund, senkt den Verbrauch und verlängert die Lebensdauer der Anlage.",
+      },
+      {
+        q: "Betreuen Sie auch Anlagen, die von anderen installiert wurden?",
+        a: "Ja, wir übernehmen Wartung, Reinigung, Desinfektion und Reparatur auch an Anlagen, die nicht von uns installiert wurden. Nennen Sie uns Marke und Modell, und wir sagen Ihnen, wie wir helfen können.",
+      },
+      {
+        q: "Ist die Besichtigung wirklich kostenlos?",
+        a: "Ja. Besichtigung, Beratung und Angebot sind kostenlos und unverbindlich, in Bozen und in ganz Südtirol.",
+      },
+    ],
   },
 
   nav: [
@@ -130,13 +179,6 @@ export const de: Content = {
     ],
   },
 
-  stats: [
-    { value: 250, suffix: "+", label: "Installierte Anlagen" },
-    { value: 100, suffix: "%", label: "Zufriedene Kunden" },
-    { value: 24, suffix: "h", label: "Durchschnittliche Reaktionszeit" },
-    { value: 100, suffix: "%", label: "Kostenlose Besichtigungen" },
-  ],
-
   reviews: {
     label: "Bewertungen",
     title: { pre: "Das sagen unsere ", highlight: "Kunden" },
@@ -189,7 +231,7 @@ export const de: Content = {
     whereLabel: "Wo wir arbeiten",
     whereTitle: "Bozen und ganz Südtirol",
     whereText:
-      "Sitz in der Toni-Ebner-Straße 9, 39100 Bozen (BZ). Schnelle, pünktliche Einsätze, kostenlose Beratung und Besichtigungen.",
+      "Sitz in der Drususallee 107, 39100 Bozen (BZ). Schnelle, pünktliche Einsätze, kostenlose Beratung und Besichtigungen.",
     valuesLabel: "Unsere Werte",
     valuesTitle: "Die Werte, die jede unserer Arbeiten leiten",
     values: [
@@ -229,19 +271,47 @@ export const de: Content = {
     heroText:
       "Kostenlose Beratung und Besichtigungen in Bozen und ganz Südtirol. Schreib uns oder ruf an: Wir antworten schnell.",
     dataLabel: "Kontaktdaten",
-    form: {
-      aria: "Angebot anfordern",
-      name: "Vor- und Nachname",
-      email: "E-Mail",
-      phone: "Telefon",
-      message: "Erzähl uns, was du brauchst",
-      submit: "Anfrage senden",
-      privacy: "Mit dem Absenden stimmst du der Datenverarbeitung zur Beantwortung deiner Anfrage zu.",
-      success: "Anfrage bereit! Dein E-Mail-Programm öffnet sich zum Senden.",
-      subjectPrefix: "Angebotsanfrage",
+    companyLabel: "Firmenname",
+    vatLabel: "MwSt.-Nr.",
+    reaLabel: "REA",
+    whatsapp: {
+      label: "Der schnellste Weg",
+      title: "Schreib uns auf WhatsApp",
+      text: "Erzähl uns, was du brauchst: Ein Foto der Anlage oder zwei Zeilen genügen, damit wir dir weiterhelfen können. Du bekommst ein klares Angebot, unverbindlich.",
+      cta: "Chat öffnen",
+      topicsLabel: "Oder starte hier",
+      topics: [
+        {
+          label: "Angebot für eine neue Anlage",
+          message:
+            "Guten Tag, ich hätte gerne ein Angebot für die Installation einer Klimaanlage.",
+        },
+        {
+          label: "Service oder Reparatur",
+          message:
+            "Guten Tag, ich brauche Unterstützung bei einer bereits installierten Klimaanlage.",
+        },
+        {
+          label: "Wartung und Desinfektion",
+          message:
+            "Guten Tag, ich hätte gerne Informationen zur Wartung und Desinfektion meiner Anlage.",
+        },
+      ],
+      note: "Schreib uns jederzeit: Wir antworten während der Arbeitszeiten, meist noch am selben Tag.",
+      altLabel: "Lieber ein anderer Weg?",
+      privacyNote:
+        "Wenn du uns schreibst, werden deine Angaben ausschließlich zur Beantwortung deiner Anfrage verwendet. Einzelheiten in der",
     },
-    mapsEmbed: "https://www.google.com/maps?q=Via+Toni+Ebner+9,+39100+Bolzano+BZ&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Via+Toni+Ebner+9+39100+Bolzano",
+    mapsEmbed: "https://www.google.com/maps?q=Viale+Druso+107,+39100+Bolzano+BZ&output=embed",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=Viale+Druso+107+39100+Bolzano",
+    map: {
+      title: "Wo Sie uns finden",
+      notice:
+        "Die Karte wird von Google Maps bereitgestellt. Mit dem Laden erklären Sie sich damit einverstanden, dass Ihre IP-Adresse an Google übermittelt wird und Google eigene Cookies setzen kann.",
+      load: "Karte laden",
+      openExternal: "In Google Maps öffnen",
+      frameTitle: "Karte des Firmensitzes von Tekno Klima",
+    },
   },
 
   footer: {
@@ -254,33 +324,41 @@ export const de: Content = {
     contactsLabel: "Kontakt",
   },
 
+  notFound: {
+    label: "Fehler 404",
+    title: "Diese Seite gibt es nicht",
+    text: "Die aufgerufene Adresse entspricht keiner Seite dieser Website. Möglicherweise wurde sie verschoben oder falsch eingegeben.",
+    cta: "Zurück zur Startseite",
+  },
+
   preloaderTagline: "Wir geben deinem Komfort Energie",
 
+  /* Vedi la nota in it.ts: title sotto i ~45 caratteri, description sotto i 160. */
   meta: {
     home: {
       title: "Tekno Klima — Klimaanlagen in Bozen",
       description:
-        "Wir geben deinem Komfort Energie: Installation und Service von Klimaanlagen in Bozen und Südtirol. Offizielles Servicezentrum von Mitsubishi Heavy Industries, F-Gas-zertifizierte Techniker.",
+        "Installation und Service von Klimaanlagen in Bozen und Südtirol. Offizielles Mitsubishi-Heavy-Industries-Servicezentrum, F-Gas-zertifiziert.",
     },
     climatizzazione: {
-      title: "Klimaanlagen — Installation in Bozen",
+      title: "Klimaanlagen-Installation in Bozen",
       description:
-        "Installation von Klimaanlagen in Bozen: Split, Multisplit und Kanalgeräte. Kostenlose Besichtigung, F-Gas-zertifizierte Techniker, schneller Service in Südtirol.",
+        "Split, Multisplit und Kanalgeräte in Bozen. Kostenlose Besichtigung und Angebot, F-Gas-zertifizierte Techniker, schneller Service in Südtirol.",
     },
     galleria: {
-      title: "Galerie — Klimaanlagen in Bozen",
+      title: "Galerie: Anlagen in Bozen",
       description:
         "Unsere Arbeiten: Klimaanlagen, realisiert in Bozen und Südtirol von Tekno Klima.",
     },
     chiSiamo: {
-      title: "Über uns — Tekno Klima, Klimaanlagen in Bozen",
+      title: "Über uns: Klimaanlagen in Bozen",
       description:
-        "Tekno Klima: junges, dynamisches Unternehmen aus Bozen, spezialisiert auf Klimaanlagen. Offizielles Servicezentrum von Mitsubishi Heavy Industries. Integrität, Transparenz, Energieeffizienz.",
+        "Unternehmen aus Bozen, spezialisiert auf Klimaanlagen und offizielles Mitsubishi-Servicezentrum. Integrität, Transparenz, Energieeffizienz.",
     },
     contatti: {
-      title: "Kontakt — Angebot anfordern in Bozen",
+      title: "Kontakt und Angebote in Bozen",
       description:
-        "Kontaktiere Tekno Klima in Bozen: kostenlose Angebote und Besichtigungen für Klimaanlagen. Toni-Ebner-Straße 9, Tel. 346 420 5357.",
+        "Kontaktiere Tekno Klima in Bozen: kostenlose Angebote und Besichtigungen für Klimaanlagen. Drususallee 107, Tel. 346 420 5357.",
     },
   },
 };
